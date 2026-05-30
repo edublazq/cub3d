@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int	check_arg(int ac, const char **av)
+int	check_arg(int ac, char **av)
 {
 	int	len;
 

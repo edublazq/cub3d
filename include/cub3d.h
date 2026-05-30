@@ -30,7 +30,6 @@ typedef struct s_texture
 	char	*we;
 }	t_texture;
 
-
 typedef struct s_map
 {
 	struct s_texture	textures;
@@ -40,6 +39,14 @@ typedef struct s_map
 
 }	t_map;
 
-int	check_arg(int ac, const char **av);
+typedef struct s_game
+{
+	struct s_map	map;
+}	t_game;
+
+/* Singleton pattern */
+t_game	*get_game(void);
+
+int	check_arg(int ac, char **av);
 
 #endif

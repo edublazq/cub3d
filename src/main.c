@@ -12,6 +12,12 @@
 
 #include "cub3d.h"
 
+t_game	*get_game(void)
+{
+	static t_game	game_struct;
+	return (&game_struct);
+}
+
 int	main(int ac, char **av)
 {
 	if (check_arg(ac, av))
