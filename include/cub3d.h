@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <sys/time.h>
-# include "minilibx/include/MLX42/MLX42.h"
+# include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
 
 typedef struct s_texture
