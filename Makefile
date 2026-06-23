@@ -39,6 +39,8 @@ $(OBJ_DIR):
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
+mlx: $(MLX42_LIB)
+
 $(MLX42_LIB):
 	cmake -B $(MLX42_BUILD) $(MLX42_DIR) --log-level=WARNING
 	cmake --build $(MLX42_BUILD) -j$(shell nproc)
@@ -53,4 +55,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all mlx clean fclean re

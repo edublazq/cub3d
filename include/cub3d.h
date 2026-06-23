@@ -42,6 +42,7 @@ typedef struct s_map
 typedef struct s_game
 {
 	struct s_map	map;
+	int				fd;
 }	t_game;
 
 /* Singleton pattern */
