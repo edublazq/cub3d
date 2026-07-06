@@ -19,8 +19,8 @@
 # include <fcntl.h>
 # include <math.h>
 # include <sys/time.h>
-# include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
+# include "render.h"
 
 typedef struct s_texture
 {

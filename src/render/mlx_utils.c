@@ -10,9 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "render.h"
 
-void	start_window(void)
+void	start_window(t_mlx *mlx)
 {
-	
+	mlx_set_setting(MLX_MAXIMIZED, true);
+	mlx->main = mlx_init(WIDTH, HEIGHT, "cub3d", false);
+	if (!mlx->main)
+		return ; 
+}
+
+void	main_hooks(t_mlx *mlx)
+{
+
 }
