@@ -19,8 +19,7 @@ void	config_player(t_player *player)
 
 	player->movement_speed = 1.0f;
 	player->rotate_speed = 0.5f;
-	player->pos.x = 2;
-	player->pos.y = 2;
+	player->pos = (t_vec2){2, 2};
 	player->fov = 60;
 	dir_angle = -PI / 2;
 	plane_mag = tan((player->fov * PI / 180.0f) / 2.0);

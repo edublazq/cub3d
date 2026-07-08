@@ -17,8 +17,8 @@
 # include "libft/libft.h"
 # include <math.h>
 # define PI 3.141592f
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 1920
+# define HEIGHT 1080
 # define KEY_ESC 65307
 # define ON_DESTROY 17
 

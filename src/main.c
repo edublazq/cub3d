@@ -24,8 +24,6 @@ int	main(int ac, char **av)
 	(void)av;
 /* 	if (check_arg(ac, av))
 		return (EXIT_FAILURE); */
-	mlx_t	mlx;
-
-	init_window(&mlx);
+	init_window(&(game()->mlx));
 	return (0);
 }
