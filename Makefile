@@ -11,7 +11,7 @@ MLX42_BUILD = build/mlx42
 
 LIBFT       = $(LIBFT_DIR)/libft.a
 MLX42_LIB   = $(MLX42_BUILD)/libmlx42.a
-GLFW_LIB    = $(MLX42_BUILD)/_deps/glfw-build/src/libglfw3.a
+GLFW_LIB    = $(shell pkg-config --libs glfw3)
 
 INCLUDES    = -I include -I $(MLX42_DIR)/include
 
@@ -20,8 +20,9 @@ LDFLAGS     = -L $(LIBFT_DIR) -lft \
               $(GLFW_LIB) \
               -ldl -pthread -lm
 
-SRCS        = src/main.c \
-              src/parse.c
+HEADERS     = include/cub3d.h include/render.h
+
+SRCS        = src/main.c src/render/mlx_init.c src/render/vec2.c
 
 OBJS        = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 
@@ -30,11 +31,9 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT) $(MLX42_LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
+	mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
@@ -50,9 +49,14 @@ clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	$(RM) $(NAME) $(MLX42_BUILD)
+	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
-re: fclean all
+fclean_mlx: fclean
+	$(RM) $(MLX42_BUILD)
 
-.PHONY: all mlx clean fclean re
+re:
+	$(MAKE) fclean
+	$(MAKE) all
+
+.PHONY: all mlx clean fclean fclean_mlx re

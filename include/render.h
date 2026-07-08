@@ -16,6 +16,7 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
 # include <math.h>
+# define PI 3.141592f
 # define WIDTH 800
 # define HEIGHT 800
 # define KEY_ESC 65307
@@ -32,5 +33,9 @@ typedef struct s_vec2
 t_vec2	vec2_add(t_vec2 a, t_vec2 b);
 t_vec2	vec2_scale(t_vec2 vec, double scale);
 t_vec2	vec2_rotate(t_vec2 vec, double rad);
+t_vec2	vec2_perp(t_vec2 vec);
+
+/* MLX */
+void	init_window(mlx_t *mlx);
 
 #endif

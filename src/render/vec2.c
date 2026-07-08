@@ -34,9 +34,12 @@ t_vec2	vec2_rotate(t_vec2 vec, double rad)
 {
 	t_vec2	new_vec;
 
-	new_vec.x = vec.x * cos(rad) - vec.y * sen(rad);
-	new_vec.y = vec.x * sen(rad) + vec.y * cos(rad);
+	new_vec.x = vec.x * cos(rad) - vec.y * sin(rad);
+	new_vec.y = vec.x * sin(rad) + vec.y * cos(rad);
 	return (new_vec);
 }
 
-
+t_vec2	vec2_perp(t_vec2 vec)
+{
+	return ((t_vec2){-vec.y, vec.x});
+}
