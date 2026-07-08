@@ -12,15 +12,19 @@
 
 #include "render.h"
 
-void	start_window(t_mlx *mlx)
+void	main_hooks(mlx_key_data_t keydata, void *param)
 {
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx->main = mlx_init(WIDTH, HEIGHT, "cub3d", false);
-	if (!mlx->main)
-		return ; 
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_hook((mlx_t *)param, )
 }
 
-void	main_hooks(t_mlx *mlx)
+void	start_window(mlx_t *mlx)
 {
-
+	mlx_set_setting(MLX_MAXIMIZED, true);
+	mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
+	if (!mlx)
+		return ;
+	mlx_loop_hook(mlx, &main_hooks, mlx);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
 }

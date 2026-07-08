@@ -42,6 +42,7 @@ typedef struct s_map
 typedef struct s_game
 {
 	struct s_map	map;
+	mlx_t			mlx;
 	int				fd;
 }	t_game;
 

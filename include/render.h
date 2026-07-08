@@ -18,22 +18,14 @@
 # include <math.h>
 # define WIDTH 800
 # define HEIGHT 800
+# define KEY_ESC 65307
+# define ON_DESTROY 17
 
 typedef struct s_vec2
 {
 	double	x;
 	double	y;
 }	t_vec2;
-
-typedef struct s_mlx
-{
-	int		size_x;
-	int		size_y;
-	void	*main;
-	void	*win;
-	void	*img;
-	void	*addr;
-}	t_mlx;
 
 /* GESTION DE VECTORES */
 
