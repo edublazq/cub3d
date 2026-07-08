@@ -15,6 +15,7 @@
 t_game	*game(void)
 {
 	static t_game	game_struct;
+
 	return (&game_struct);
 }
 

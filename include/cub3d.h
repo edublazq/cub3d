@@ -36,7 +36,6 @@ typedef struct s_map
 	char				**grid;
 	int					rows;
 	int					cols;
-
 }	t_map;
 
 typedef struct s_player
