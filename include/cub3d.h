@@ -71,7 +71,7 @@ typedef struct s_vec2
 typedef struct s_ray
 {
 	t_vec2	map;
-	t_vec2	ray_dir;
+	t_vec2	dir;
 	t_vec2	delta_dist;
 	t_vec2	step;
 	t_vec2	side_dist;
