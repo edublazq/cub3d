@@ -20,7 +20,13 @@
 # include <math.h>
 # include <sys/time.h>
 # include "libft/libft.h"
-# include "render.h"
+# include "MLX42/include/MLX42/MLX42.h"
+# define PI 3.141592f
+# define WIDTH 1920
+# define HEIGHT 1080
+# define KEY_ESC 65307
+# define ON_DESTROY 17
+
 
 typedef struct s_texture
 {
@@ -55,6 +61,39 @@ typedef struct s_game
 	mlx_t			mlx;
 	int				fd;
 }	t_game;
+
+typedef struct s_vec2
+{
+	double	x;
+	double	y;
+}	t_vec2;
+
+typedef struct s_ray
+{
+	t_vec2	map;
+	t_vec2	ray_dir;
+	t_vec2	delta_dist;
+	t_vec2	step;
+	t_vec2	side_dist;
+	double	perp_wall_distance;
+	int		hit;
+	int		side;
+}	t_ray;
+
+/* GESTION DE VECTORES */
+
+t_vec2	vec2_add(t_vec2 a, t_vec2 b);
+t_vec2	vec2_scale(t_vec2 vec, double scale);
+t_vec2	vec2_rotate(t_vec2 vec, double rad);
+t_vec2	vec2_perp(t_vec2 vec);
+
+/* MLX */
+void	init_window(mlx_t *mlx);
+
+/* RAYCASTING */
+
+t_ray	computer_ray(t_player *player, t_map *map, int x, int screen_width);
+
 
 /* Singleton pattern */
 
