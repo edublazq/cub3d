@@ -26,8 +26,8 @@ int	check_arg(int ac, char **av)
 
 int	check_map(const char **av)
 {
-	get_game()->fd = open(av[1], O_RDONLY);
-	if (get_game()->fd == -1)
+	game()->fd = open(av[1], O_RDONLY);
+	if (game()->fd == -1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);	
 }

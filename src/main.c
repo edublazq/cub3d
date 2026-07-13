@@ -12,15 +12,19 @@
 
 #include "cub3d.h"
 
-t_game	*get_game(void)
+t_game	*game(void)
 {
 	static t_game	game_struct;
+
 	return (&game_struct);
 }
 
 int	main(int ac, char **av)
 {
-	if (check_arg(ac, av))
-		return (EXIT_FAILURE);
+	(void)ac;
+	(void)av;
+/* 	if (check_arg(ac, av))
+		return (EXIT_FAILURE); */
+	init_window(&(game()->mlx));
 	return (0);
 }

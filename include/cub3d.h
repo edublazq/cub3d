@@ -19,8 +19,8 @@
 # include <fcntl.h>
 # include <math.h>
 # include <sys/time.h>
-# include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
+# include "render.h"
 
 typedef struct s_texture
 {
@@ -36,18 +36,36 @@ typedef struct s_map
 	char				**grid;
 	int					rows;
 	int					cols;
-
 }	t_map;
+
+typedef struct s_player
+{
+	t_vec2	pos;
+	t_vec2	dir;
+	t_vec2	plane;
+	double	movement_speed;
+	double	rotate_speed;
+	int		fov;
+}	t_player;
 
 typedef struct s_game
 {
+	struct s_player	player;
 	struct s_map	map;
+	mlx_t			mlx;
 	int				fd;
 }	t_game;
 
 /* Singleton pattern */
-t_game	*get_game(void);
+
+t_game	*game(void);
+
+/* Parseo */
 
 int	check_arg(int ac, char **av);
+
+/* Configuracion */
+
+void	config_player(t_player *player);
 
 #endif
