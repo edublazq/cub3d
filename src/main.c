@@ -23,8 +23,8 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-/* 	if (check_arg(ac, av))
-		return (EXIT_FAILURE); */
-	init_window(&(game()->mlx));
+ 	if (check_arg(ac, av))
+		return (EXIT_FAILURE);
+	// init_window(&(game()->mlx));
 	return (0);
 }

@@ -12,22 +12,63 @@
 
 #include "cub3d.h"
 
+char **read_file(char *file)
+{
+	int i;
+	int fd;
+	char *line;
+	char **content;
+
+	i = 0;
+	line = NULL;
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		i++;
+	}
+	content = malloc(sizeof(char *) * (i + 1));
+	close(fd);
+	fd = open(file, O_RDONLY);
+	i = 0;
+	line = NULL;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		content[i] = NULL;
+		content[i] = line;
+		i++;
+	}
+	content[i] = '\0';
+	close (fd);
+	return (content);
+}
+
 int	check_arg(int ac, char **av)
 {
 	int	len;
+	char **file_content;
 
 	if (ac != 2)
 		return (EXIT_FAILURE);
 	len = ft_strlen(av[1]);
 	if (len <= 4 || ft_strncmp(&av[1][len - 4], ".cub", 4) != 0)
+	{
+		printf("%s\n", "File's name is not correct.");
 		return (EXIT_FAILURE);
+	}
+	file_content = read_file(av[1]);
+	if (check_file(file_content))
+	{
+		printf("%s\n", "File structure is not correct.");
+		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
-int	check_map(const char **av)
-{
-	game()->fd = open(av[1], O_RDONLY);
-	if (game()->fd == -1)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);	
-}

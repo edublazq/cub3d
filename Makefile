@@ -22,7 +22,8 @@ LDFLAGS     = -L $(LIBFT_DIR) -lft \
 
 HEADERS     = include/cub3d.h include/render.h
 
-SRCS        = src/main.c src/render/mlx_init.c src/render/vec2.c
+SRCS        = src/main.c src/render/mlx_init.c src/render/vec2.c \
+				src/parse.c src/gnl.c src/file_checkers.c \
 
 OBJS        = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 

@@ -21,6 +21,7 @@
 # include <sys/time.h>
 # include "libft/libft.h"
 # include "render.h"
+# include "gnl.h"
 
 typedef struct s_texture
 {
@@ -63,6 +64,7 @@ t_game	*game(void);
 /* Parseo */
 
 int	check_arg(int ac, char **av);
+int check_file(char **content);
 
 /* Configuracion */
 
