@@ -45,7 +45,7 @@ char **read_file(char *file)
 		content[i] = line;
 		i++;
 	}
-	content[i] = '\0';
+	content[i] = NULL;
 	close (fd);
 	return (content);
 }
@@ -67,8 +67,17 @@ int	check_arg(int ac, char **av)
 	if (check_file(file_content))
 	{
 		printf("%s\n", "File structure is not correct.");
+		/* printf() de la estructura correcta */
 		return (EXIT_FAILURE);
 	}
+	if (check_map(file_content))
+	{
+		printf("%s\n", "Map structure is not correct.");
+		/* printf() de la estructura correcta */
+		return (EXIT_FAILURE);
+	}
+	printf("%s", file_content[0]);
+	free_argv(file_content);
 	return (EXIT_SUCCESS);
 }
 

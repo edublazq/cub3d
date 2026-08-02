@@ -12,8 +12,9 @@
 
 #include "cub3d.h"
 
-int check_textures(char *line, int i)
+static int check_textures(char *line, int i)
 {
+    // int fd;
     int len;
     int error1;
     int error2; 
@@ -41,12 +42,17 @@ int check_textures(char *line, int i)
         error1 = ft_strncmp(line, "EA ./", 4);
         error2 = ft_strncmp(&line[len - 5], ".xpm", 4);
     }
+    // fd = open(ft_strchr(line, '.'), O_RDONLY);
+    // if (fd == -1)
+    //         return (EXIT_FAILURE);
     return (error1 + error2);
 }
 
-int check_colors(char *line, int i)
+static int check_colors(char *line, int i)
 {
+    int nmb;
     int error;
+    char **numbers;
 
     error = 0;
     if (i == 5)
@@ -77,16 +83,19 @@ int check_colors(char *line, int i)
             i++;
         }
     }
-    return (error);
+    line = ft_substr(line, 2, i - 2);
+    numbers = ft_split(line, ',');
+    i = 0;
+    while (numbers[i])
+    {
+        nmb = ft_atoi(numbers[i]);
+        if (i > 2 || nmb < 0 || nmb > 255)
+            error = 1;
+        i++;
+    }
+    free_argv(numbers);
+    return (EXIT_SUCCESS);
 }
-
-// int	check_map(const char **av)
-// {
-// 	// game()->fd = open(av[1], O_RDONLY);
-// 	// if (game()->fd == -1)
-// 	// 	return (EXIT_FAILURE);
-// 	// return (EXIT_SUCCESS);
-// }
 
 
 int check_file(char **content)
@@ -110,7 +119,6 @@ int check_file(char **content)
             error = check_colors(content[i], i);
         else if (i == 6)
             error = check_colors(content[i], i);
-        // error = check_map(content);
         if (error != 0)
             return (EXIT_FAILURE);
         i++;

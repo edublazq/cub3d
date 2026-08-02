@@ -34,6 +34,8 @@ typedef struct s_texture
 typedef struct s_map
 {
 	struct s_texture	textures;
+    int     			floor_color;
+    int     			ceiling_color;
 	char				**grid;
 	int					rows;
 	int					cols;
@@ -63,8 +65,12 @@ t_game	*game(void);
 
 /* Parseo */
 
-int	check_arg(int ac, char **av);
-int check_file(char **content);
+char 	**read_file(char *file);
+int		check_arg(int ac, char **av);
+int 	check_file(char **content);
+int 	check_map(char **file_content);
+int		validate_data(char **av);
+void	free_argv(char **argv);
 
 /* Configuracion */
 
