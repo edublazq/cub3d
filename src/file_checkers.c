@@ -52,6 +52,7 @@ static int check_colors(char *line, int i)
 {
     int nmb;
     int error;
+    char *tmp;
     char **numbers;
 
     error = 0;
@@ -82,8 +83,9 @@ static int check_colors(char *line, int i)
             }
             i++;
         }
+        tmp = ft_substr(line, 2, i - 2);
+        free(tmp);
     }
-    line = ft_substr(line, 2, i - 2);
     numbers = ft_split(line, ',');
     i = 0;
     while (numbers[i])
@@ -93,8 +95,7 @@ static int check_colors(char *line, int i)
             error = 1;
         i++;
     }
-    free_argv(numbers);
-    return (EXIT_SUCCESS);
+    return (free_argv(numbers), error);
 }
 
 

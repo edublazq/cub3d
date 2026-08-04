@@ -19,10 +19,7 @@ char	*the_rest(char *save)
 	while (save[i] != '\0' && save[i] != '\n')
 		i++;
 	if (save[i] == '\0')
-	{
-		free(save);
-		return (NULL);
-	}
+		return (free(save), NULL);
 	new_save = ft_calloc(sizeof(char), (ft_strlen(save) - i + 1));
 	i++;
 	n = 0;

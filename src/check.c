@@ -20,7 +20,6 @@ char **read_file(char *file)
 	char **content;
 
 	i = 0;
-	line = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
@@ -30,8 +29,11 @@ char **read_file(char *file)
 		if (!line)
 			break ;
 		i++;
+		free(line);
 	}
 	content = malloc(sizeof(char *) * (i + 1));
+	if (!content)
+		return (NULL);
 	close(fd);
 	fd = open(file, O_RDONLY);
 	i = 0;
@@ -68,16 +70,15 @@ int	check_arg(int ac, char **av)
 	{
 		printf("%s\n", "File structure is not correct.");
 		/* printf() de la estructura correcta */
-		return (EXIT_FAILURE);
+		return (free_argv(file_content), EXIT_FAILURE);
 	}
 	if (check_map(file_content))
 	{
 		printf("%s\n", "Map structure is not correct.");
 		/* printf() de la estructura correcta */
-		return (EXIT_FAILURE);
+		return (free_argv(file_content), EXIT_FAILURE);
 	}
 	printf("%s", file_content[0]);
-	free_argv(file_content);
-	return (EXIT_SUCCESS);
+	return (free_argv(file_content), EXIT_SUCCESS);
 }
 
