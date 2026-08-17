@@ -66,6 +66,12 @@ int	check_arg(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	file_content = read_file(av[1]);
+	if (file_content == NULL)
+	{
+		printf("%s\n", "File is not readable.");
+		/* printf() de la estructura correcta */
+		return (free_argv(file_content), EXIT_FAILURE);
+	}
 	if (check_file(file_content))
 	{
 		printf("%s\n", "File structure is not correct.");
@@ -78,7 +84,6 @@ int	check_arg(int ac, char **av)
 		/* printf() de la estructura correcta */
 		return (free_argv(file_content), EXIT_FAILURE);
 	}
-	printf("%s", file_content[0]);
 	return (free_argv(file_content), EXIT_SUCCESS);
 }
 

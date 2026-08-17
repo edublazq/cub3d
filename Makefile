@@ -24,7 +24,7 @@ HEADERS     = include/cub3d.h include/render.h
 
 SRCS        = src/main.c src/render/mlx_init.c src/render/vec2.c \
 			  src/check.c src/gnl.c src/file_checkers.c \
-			  src/map_checkers.c src/utils.c \
+			  src/map_checkers.c src/utils.c src/data.c \
 
 OBJS        = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 

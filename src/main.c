@@ -12,19 +12,31 @@
 
 #include "cub3d.h"
 
-t_game	*game(void)
-{
-	static t_game	game_struct;
+// t_player	*player(void)
+// {
+// 	static t_player	player_struct;
 
-	return (&game_struct);
-}
+// 	player_struct = get_data_for_player(player_struct);
+// 	return (&player_struct);
+// }
+
+// t_game	*game(void)
+// {
+// 	static t_game	game_struct;
+
+// 	return (&game_struct);
+// }
 
 int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
+	t_game game;
+
  	if (check_arg(ac, av))
 		return (EXIT_FAILURE);
-	// init_window(&(game()->mlx));
-	return (0);
+	get_data_for_map(&(game.map), av[1]);
+	get_data_for_player(&(game.player), &(game.map));
+	init_window(&(game.mlx));
+	return (free(game.map.textures), free_argv((&(game.map))->grid), 0);
 }

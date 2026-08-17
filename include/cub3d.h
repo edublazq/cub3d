@@ -31,24 +31,32 @@ typedef struct s_texture
 	char	*we;
 }	t_texture;
 
+typedef struct s_colors
+{
+	int		one;
+	int		two;
+	int		three;
+}	t_colors;
+
 typedef struct s_map
 {
-	struct s_texture	textures;
-    int     			floor_color;
-    int     			ceiling_color;
-	char				**grid;
-	int					rows;
-	int					cols;
+	t_texture	*textures;
+    t_colors	floor_color;
+    t_colors	ceiling_color;
+	char		**grid;
+	int			height;
+	int			width;
 }	t_map;
 
 typedef struct s_player
 {
 	t_vec2	pos;
-	t_vec2	dir;
-	t_vec2	plane;
-	double	movement_speed;
-	double	rotate_speed;
-	int		fov;
+	char	orientation;
+	// t_vec2	dir;
+	// t_vec2	plane;
+	// double	movement_speed;
+	// double	rotate_speed;
+	// int		fov;
 }	t_player;
 
 typedef struct s_game
@@ -63,14 +71,15 @@ typedef struct s_game
 
 t_game	*game(void);
 
-/* Parseo */
+/* Validación y parseo */
 
 char 	**read_file(char *file);
 int		check_arg(int ac, char **av);
 int 	check_file(char **content);
 int 	check_map(char **file_content);
-int		validate_data(char **av);
 void	free_argv(char **argv);
+void	get_data_for_map(t_map *map, char *file);
+void	get_data_for_player(t_player *player, t_map *map);
 
 /* Configuracion */
 
