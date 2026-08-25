@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edblazqu <edblazqu@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,34 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef TYPES_H
+# define TYPES_H
 
-# include "MLX42/include/MLX42/MLX42.h"
-# include "libft/libft.h"
-# include <math.h>
-# define PI 3.141592f
-# define WIDTH 1920
-# define HEIGHT 1080
-# define KEY_ESC 65307
-# define ON_DESTROY 17
-# define TILE_SIZE 25
-# define PLAYER_SIZE 10
-# define MOVE_SPEED 0.2
-
-#include "cub3d.h"
-#include "types.h"
-
-typedef struct s_game t_game;
-
-/* GESTION DE VECTORES */
-
-t_vec2	vec2_add(t_vec2 a, t_vec2 b);
-t_vec2	vec2_scale(t_vec2 vec, double scale);
-t_vec2	vec2_rotate(t_vec2 vec, double rad);
-t_vec2	vec2_perp(t_vec2 vec);
-
-/* MLX */
-void	init_window(t_game *game);
+typedef struct s_vec2
+{
+    float x;
+    float y;
+}   t_vec2;
 
 #endif

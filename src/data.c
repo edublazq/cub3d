@@ -144,9 +144,29 @@ void    get_data_for_player(t_player *player, t_map *map)
             c = map->grid[i][j];
             if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
             {
-                player->orientation = c;
-                (player->pos).x = j;
-                (player->pos).y = i;
+                if (c == 'N')
+                {
+                    (player->orientation).x = 0;
+                    (player->orientation).y = -1;
+                }
+                else if (c == 'S')
+                {
+                    (player->orientation).x = 0;
+                    (player->orientation).y = 1;
+                }
+                else if (c == 'E')
+                {
+                    (player->orientation).x = 1;
+                    (player->orientation).y = 0;
+                }
+                else if (c == 'W')
+                {
+                    (player->orientation).x = -1;
+                    (player->orientation).y = 0;
+                }
+                (player->pos).x = j + 0.5;
+                (player->pos).y = i + 0.5;
+                map->grid[i][j] = '0';
             }
             j++;
         }

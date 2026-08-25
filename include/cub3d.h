@@ -22,6 +22,7 @@
 # include "libft/libft.h"
 # include "render.h"
 # include "gnl.h"
+# include "types.h"
 
 typedef struct s_texture
 {
@@ -51,10 +52,9 @@ typedef struct s_map
 typedef struct s_player
 {
 	t_vec2	pos;
-	char	orientation;
-	// t_vec2	dir;
+	t_vec2	orientation;
+	double	movement_speed;
 	// t_vec2	plane;
-	// double	movement_speed;
 	// double	rotate_speed;
 	// int		fov;
 }	t_player;
@@ -63,13 +63,16 @@ typedef struct s_game
 {
 	struct s_player	player;
 	struct s_map	map;
-	mlx_t			mlx;
+	int				width;
+	int				height;
+	mlx_t			*mlx;
 	int				fd;
+	void			*img;
 }	t_game;
 
-/* Singleton pattern */
+// /* Singleton pattern */
 
-t_game	*game(void);
+// t_game	*game(void);
 
 /* Validación y parseo */
 
