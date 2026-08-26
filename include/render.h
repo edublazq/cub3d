@@ -24,6 +24,7 @@
 # define TILE_SIZE 25
 # define PLAYER_SIZE 10
 # define MOVE_SPEED 0.2
+# define ROT_SPEED 0.02
 
 #include "cub3d.h"
 #include "types.h"
@@ -39,5 +40,19 @@ t_vec2	vec2_perp(t_vec2 vec);
 
 /* MLX */
 void	init_window(t_game *game);
+
+/* MOVEMENT */
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	rotate_right(t_game *game);
+void	rotate_left(t_game *game);
+
+/* DRAWERS */
+void    draw_map(t_game *game);
+void	draw_player(t_game *game);
+void	draw_square(t_game *game, int x, int y, uint32_t color);
+
 
 #endif

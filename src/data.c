@@ -156,12 +156,12 @@ void    get_data_for_player(t_player *player, t_map *map)
                 }
                 else if (c == 'E')
                 {
-                    (player->orientation).x = 1;
+                    (player->orientation).x = -1;
                     (player->orientation).y = 0;
                 }
                 else if (c == 'W')
                 {
-                    (player->orientation).x = -1;
+                    (player->orientation).x = 1;
                     (player->orientation).y = 0;
                 }
                 (player->pos).x = j + 0.5;
