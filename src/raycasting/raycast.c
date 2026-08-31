@@ -40,17 +40,19 @@ static void	init_ray_steps(t_ray *ray, t_player *player)
     }
     if (ray->dir.y < 0)
     {
-        ray->step_y = -1;
-        ray->side_dist_y = (player->pos.y - ray->map_y) * ray->delta_dist_y;
+        ray->step.y = -1;
+        ray->side_dist.y = (player->pos.y - ray->map.y) * ray->delta_dist.y;
     }
     else
     {
-        ray->step_y = 1;
-        ray->side_dist_y = (ray->map_y + 1.0 - player->pos.y) * ray->delta_dist_y;
+        ray->step.y = 1;
+        ray->side_dist.y = (ray->map.y + 1.0 - player->pos.y) * ray->delta_dist.y;
     }
 }
 
 t_ray	computer_ray(t_player *player, t_map *map, int x, int screen_width)
 {
+	t_ray	ray;
 
+	
 }
