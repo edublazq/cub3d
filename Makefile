@@ -1,6 +1,6 @@
 NAME        = cub3d
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -g3
 RM          = rm -rf
 
 SRC_DIR     = src
@@ -26,6 +26,7 @@ SRCS        = src/main.c src/render/mlx_init.c src/render/vec2.c \
 			  src/render/drawer.c src/render/movement.c \
 			  src/check.c src/gnl.c src/file_checkers.c \
 			  src/map_checkers.c src/utils.c src/data.c \
+			  src/render/raycasting/aux.c src/render/raycasting/raycast.c \
 
 OBJS        = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 

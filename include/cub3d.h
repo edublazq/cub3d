@@ -54,10 +54,24 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	orientation;
 	double	movement_speed;
-	// t_vec2	plane;
-	// double	rotate_speed;
-	// int		fov;
+	t_vec2	plane;
+	double	rotate_speed;
+	int		fov;
 }	t_player;
+
+typedef struct s_ray
+{
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	t_vec2	dir;
+	t_vec2	delta_dist;
+	t_vec2	side_dist;
+	int		side;
+	int		hit;
+	double	perp_wall_dist;
+}	t_ray;
 
 typedef struct s_game
 {
@@ -69,10 +83,6 @@ typedef struct s_game
 	int				fd;
 	void			*img;
 }	t_game;
-
-// /* Singleton pattern */
-
-// t_game	*game(void);
 
 /* Validación y parseo */
 

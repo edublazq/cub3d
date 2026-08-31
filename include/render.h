@@ -26,10 +26,15 @@
 # define MOVE_SPEED 0.2
 # define ROT_SPEED 0.02
 
-#include "cub3d.h"
-#include "types.h"
+# include "cub3d.h"
+# include "types.h"
 
-typedef struct s_game t_game;
+typedef struct s_game	t_game;
+typedef struct s_ray	t_ray;
+typedef struct s_player	t_player;
+typedef struct s_map	t_map;
+typedef struct s_colors	t_colors;
+typedef struct s_texture	t_texture;
 
 /* GESTION DE VECTORES */
 
@@ -50,9 +55,13 @@ void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
 
 /* DRAWERS */
-void    draw_map(t_game *game);
+void	draw_map(t_game *game);
 void	draw_player(t_game *game);
 void	draw_square(t_game *game, int x, int y, uint32_t color);
 
+/* RAY */
+int		is_wall(t_map *map, int x, int y);
+t_ray	compute_ray(t_player *player, t_map *map, int x, int screen_width);
+void	draw_3d(t_game *game);
 
 #endif
