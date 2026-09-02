@@ -12,15 +12,32 @@
 
 #include "cub3d.h"
 
-static int	can_move(t_game *game, double x, double y)
+int	can_move(t_game *game, double x, double y)
 {
 	int	map_x;
 	int	map_y;
 
-	map_x = (int)x;
-	map_y = (int)y;
+	map_x = (int)(x - PLAYER_RADIUS);
+	map_y = (int)(y - PLAYER_RADIUS);
+	if (game->map.grid[map_y][map_x] != '0')
+		return (0);
 
-	return (game->map.grid[map_y][map_x] == '0');
+	map_x = (int)(x + PLAYER_RADIUS);
+	map_y = (int)(y - PLAYER_RADIUS);
+	if (game->map.grid[map_y][map_x] != '0')
+		return (0);
+
+	map_x = (int)(x - PLAYER_RADIUS);
+	map_y = (int)(y + PLAYER_RADIUS);
+	if (game->map.grid[map_y][map_x] != '0')
+		return (0);
+
+	map_x = (int)(x + PLAYER_RADIUS);
+	map_y = (int)(y + PLAYER_RADIUS);
+	if (game->map.grid[map_y][map_x] != '0')
+		return (0);
+
+	return (1);
 }
 
 void	move_forward(t_game *game)

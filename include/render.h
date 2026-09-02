@@ -25,6 +25,7 @@
 # define PLAYER_SIZE 10
 # define MOVE_SPEED 0.09
 # define ROT_SPEED 0.02
+# define PLAYER_RADIUS 0.15
 
 # include "cub3d.h"
 # include "types.h"
