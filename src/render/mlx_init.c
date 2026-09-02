@@ -34,20 +34,28 @@
 
 void	resize_hook(int32_t width, int32_t height, void *param)
 {
-	t_game	*game;
+	t_game		*game;
+	mlx_image_t	*old_img;
+	mlx_image_t	*new_img;
 
 	game = (t_game *)param;
 	game->width = width;
 	game->height = height;
-	mlx_delete_image(game->mlx, game->img);
-	game->img = mlx_new_image(game->mlx, width, height);
-	if (!game->img)
+	new_img = mlx_new_image(game->mlx, width, height);
+	if (!new_img)
+		return ;
+	old_img = game->img;
+	game->img = new_img;
+	if (old_img)
+		mlx_delete_image(game->mlx, old_img);
+	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
 	{
+		mlx_delete_image(game->mlx, game->img);
+		game->img = NULL;
 		mlx_close_window(game->mlx);
 		return ;
 	}
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
-	draw_map(game);
+	draw_3d(game);
 }
 
 void	 main_hooks(void *param)
@@ -69,7 +77,7 @@ void	 main_hooks(void *param)
 		rotate_left(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate_right(game);
-	draw_map(game);
+	draw_3d(game);
 }
 
 void	init_window(t_game *game)
@@ -83,7 +91,7 @@ void	init_window(t_game *game)
 	game->img = mlx_new_image(game->mlx, game->width, game->height);
 	if (!game->img)
 		return (mlx_terminate(game->mlx));
-	draw_map(game);
+	draw_3d(game);
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
 		return (mlx_terminate(game->mlx));
 	mlx_loop_hook(game->mlx, &main_hooks, game);

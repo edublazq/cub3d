@@ -12,6 +12,16 @@
 
 #include "cub3d.h"
 
+int	is_walkable(char c)
+{
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	is_void(char c)
+{
+	return (c == ' ' || c == '-' || c == '\0');
+}
+
 void	free_argv(char **argv)
 {
 	int	i;
