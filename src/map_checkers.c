@@ -72,16 +72,6 @@ static char *map_rectangulizer(char *line, char *map, int longest)
     return (map);
 }
 
-static int	is_walkable(char c)
-{
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
-
-static int	is_void(char c)
-{
-	return (c == ' ' || c == '-' || c == '\0');
-}
-
 static int open_map(char **map, int max)
 {
     int x;

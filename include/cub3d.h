@@ -93,6 +93,8 @@ int 	check_map(char **file_content);
 void	free_argv(char **argv);
 void	get_data_for_map(t_map *map, char *file);
 void	get_data_for_player(t_player *player, t_map *map);
+int		is_void(char c);
+int		is_walkable(char c);
 
 /* Configuracion */
 

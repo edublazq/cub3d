@@ -12,21 +12,6 @@
 
 #include "cub3d.h"
 
-// t_player	*player(void)
-// {
-// 	static t_player	player_struct;
-
-// 	player_struct = get_data_for_player(player_struct);
-// 	return (&player_struct);
-// }
-
-// t_game	*game(void)
-// {
-// 	static t_game	game_struct;
-
-// 	return (&game_struct);
-// }
-
 int	main(int ac, char **av)
 {
 	(void)ac;

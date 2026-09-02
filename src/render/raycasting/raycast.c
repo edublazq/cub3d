@@ -79,14 +79,6 @@ static void	perform_dda(t_ray *ray, t_map *map)
 	}
 }
 
-static double	calc_perp_wall_dist(t_ray *ray, t_player *player)
-{
-	if (ray->side == 0)
-		return ((ray->map_x - player->pos.x + (1 - ray->step_x) / 2.0) / ray->dir.x);
-	else
-		return ((ray->map_y - player->pos.y + (1 - ray->step_y) / 2.0) / ray->dir.y);
-}
-
 t_ray	compute_ray(t_player *player, t_map *map, int x, int screen_width)
 {
 	t_ray	ray;

@@ -14,7 +14,6 @@
 
 static int check_textures(char *line, int i)
 {
-    // int fd;
     int len;
     int error1;
     int error2; 
@@ -42,9 +41,6 @@ static int check_textures(char *line, int i)
         error1 = ft_strncmp(line, "EA ./", 4);
         error2 = ft_strncmp(&line[len - 5], ".xpm", 4);
     }
-    // fd = open(ft_strchr(line, '.'), O_RDONLY);
-    // if (fd == -1)
-    //         return (EXIT_FAILURE);
     return (error1 + error2);
 }
 
