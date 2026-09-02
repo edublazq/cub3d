@@ -81,18 +81,12 @@ void	move_right(t_game *game)
 
 void	rotate_right(t_game *game)
 {
-	double	old_dir_x;
-
-	old_dir_x = game->player.orientation.x;
-	game->player.orientation.x = game->player.orientation.x * cos(ROT_SPEED) - game->player.orientation.y * sin(ROT_SPEED);
-	game->player.orientation.y = old_dir_x * sin(ROT_SPEED) + game->player.orientation.y * cos(ROT_SPEED);
+	game->player.orientation = vec2_rotate(game->player.orientation, ROT_SPEED);
+	game->player.plane = vec2_rotate(game->player.plane, ROT_SPEED);
 }
 
 void	rotate_left(t_game *game)
 {
-	double	old_dir_y;
-
-	old_dir_y = game->player.orientation.y;
-	game->player.orientation.x = game->player.orientation.x * cos(-ROT_SPEED) - game->player.orientation.y * sin(-ROT_SPEED);
-	game->player.orientation.y = old_dir_y * sin(-ROT_SPEED) + game->player.orientation.y * cos(-ROT_SPEED);
+	game->player.orientation = vec2_rotate(game->player.orientation, -ROT_SPEED);
+	game->player.plane = vec2_rotate(game->player.plane, -ROT_SPEED);
 }

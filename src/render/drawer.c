@@ -84,8 +84,8 @@ void draw_map(t_game *game)
 static uint32_t	pick_wall_color(t_ray *ray)
 {
 	if (ray->side == 1)
-		return (0x888888);
-	return (0xCCCCCC);
+		return (0x888888FF);
+	return (0xCCCCCCFF);
 }
 
 void	draw_column(void *img, int x, t_ray *ray, int screen_height)
@@ -108,9 +108,9 @@ void	draw_column(void *img, int x, t_ray *ray, int screen_height)
 	while (++y < screen_height)
 	{
 		if (y < draw_start)
-			mlx_put_pixel(img, x, y, 0x800000);
+			mlx_put_pixel(img, x, y, 0x800000FF);
 		else if (y > draw_end)
-			mlx_put_pixel(img, x, y, 0x808000);
+			mlx_put_pixel(img, x, y, 0x808000FF);
 		else
 			mlx_put_pixel(img, x, y, color);
 	}
@@ -122,7 +122,7 @@ void	draw_3d(t_game *game)
 	int		x;
 
 	x = 0;
-	while(x < game->width)
+	while (x < game->width)
 	{
 		ray = compute_ray(&game->player, &game->map, x, game->width);
 		draw_column(game->img, x, &ray, game->height);

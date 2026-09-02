@@ -23,7 +23,7 @@
 # define ON_DESTROY 17
 # define TILE_SIZE 25
 # define PLAYER_SIZE 10
-# define MOVE_SPEED 0.2
+# define MOVE_SPEED 0.09
 # define ROT_SPEED 0.02
 
 # include "cub3d.h"

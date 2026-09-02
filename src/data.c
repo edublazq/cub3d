@@ -172,4 +172,7 @@ void    get_data_for_player(t_player *player, t_map *map)
         }
         i++;
     }
+    player->fov = 60;
+    player->plane = vec2_scale(vec2_perp(player->orientation),
+            tan((player->fov * PI / 180.0) / 2.0));
 }
