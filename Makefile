@@ -1,6 +1,6 @@
 NAME        = cub3d
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g3
+CFLAGS      = -Wall -Wextra -Werror -o2
 RM          = rm -rf
 
 SRC_DIR     = src

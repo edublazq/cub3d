@@ -21,22 +21,18 @@ int	can_move(t_game *game, double x, double y)
 	map_y = (int)(y - PLAYER_RADIUS);
 	if (game->map.grid[map_y][map_x] != '0')
 		return (0);
-
 	map_x = (int)(x + PLAYER_RADIUS);
 	map_y = (int)(y - PLAYER_RADIUS);
 	if (game->map.grid[map_y][map_x] != '0')
 		return (0);
-
 	map_x = (int)(x - PLAYER_RADIUS);
 	map_y = (int)(y + PLAYER_RADIUS);
 	if (game->map.grid[map_y][map_x] != '0')
 		return (0);
-
 	map_x = (int)(x + PLAYER_RADIUS);
 	map_y = (int)(y + PLAYER_RADIUS);
 	if (game->map.grid[map_y][map_x] != '0')
 		return (0);
-
 	return (1);
 }
 

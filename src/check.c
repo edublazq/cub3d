@@ -12,12 +12,12 @@
 
 #include "cub3d.h"
 
-char **read_file(char *file)
+char	**read_file(char *file)
 {
-	int i;
-	int fd;
-	char *line;
-	char **content;
+	int		i;
+	int		fd;
+	char	*line;
+	char	**content;
 
 	i = 0;
 	fd = open(file, O_RDONLY);
@@ -54,8 +54,8 @@ char **read_file(char *file)
 
 int	check_arg(int ac, char **av)
 {
-	int	len;
-	char **file_content;
+	int		len;
+	char	**file_content;
 
 	if (ac != 2)
 		return (EXIT_FAILURE);
