@@ -127,7 +127,7 @@ int	check_map(char **content)
 	}
 	map[i - 8] = NULL;
 	if (open_map(map, longest))
-		return (free_argv(map), EXIT_FAILURE);
-	free_argv(map);
+		return (free_matrix(map), EXIT_FAILURE);
+	free_matrix(map);
 	return (EXIT_SUCCESS);
 }

@@ -14,8 +14,6 @@
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
 	t_game game;
 
  	if (check_arg(ac, av))
@@ -27,5 +25,7 @@ int	main(int ac, char **av)
 	}
 	get_data_for_player(&(game.player), &(game.map));
 	init_window(&game);
-	return (free(game.map.textures), free_argv((&(game.map))->grid), 0);
+	free(game.map.textures);
+	free_matrix((&(game.map))->grid);
+	return (EXIT_SUCCESS);
 }

@@ -12,12 +12,12 @@
 
 #include "cub3d.h"
 
-char	**read_file(char *file)
+char **read_file(char *file)
 {
-	int		i;
-	int		fd;
-	char	*line;
-	char	**content;
+	int i;
+	int fd;
+	char *line;
+	char **content;
 
 	i = 0;
 	fd = open(file, O_RDONLY);
@@ -54,8 +54,8 @@ char	**read_file(char *file)
 
 int	check_arg(int ac, char **av)
 {
-	int		len;
-	char	**file_content;
+	int	len;
+	char **file_content;
 
 	if (ac != 2)
 		return (EXIT_FAILURE);
@@ -70,20 +70,20 @@ int	check_arg(int ac, char **av)
 	{
 		printf("%s\n", "File is not readable.");
 		/* printf() de la estructura correcta */
-		return (free_argv(file_content), EXIT_FAILURE);
+		return (free_matrix(file_content), EXIT_FAILURE);
 	}
 	if (check_file(file_content))
 	{
 		printf("%s\n", "File structure is not correct.");
 		/* printf() de la estructura correcta */
-		return (free_argv(file_content), EXIT_FAILURE);
+		return (free_matrix(file_content), EXIT_FAILURE);
 	}
 	if (check_map(file_content))
 	{
 		printf("%s\n", "Map structure is not correct.");
 		/* printf() de la estructura correcta */
-		return (free_argv(file_content), EXIT_FAILURE);
+		return (free_matrix(file_content), EXIT_FAILURE);
 	}
-	return (free_argv(file_content), EXIT_SUCCESS);
+	return (free_matrix(file_content), EXIT_SUCCESS);
 }
 

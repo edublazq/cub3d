@@ -19,6 +19,15 @@ static uint32_t	pick_wall_color(t_ray *ray)
 	return (0xCCCCCCFF);
 }
 
+/* static int	pick_wall_texture(t_game *game, t_ray *ray)
+{
+	if (ray->side == 0)
+	{
+		if (ray->step_x > 0)
+			game->
+	}
+} */
+
 void	draw_column(void *img, int x, t_ray *ray, int screen_height)
 {
 	int			line_height;

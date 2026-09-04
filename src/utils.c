@@ -22,7 +22,7 @@ int	is_void(char c)
 	return (c == ' ' || c == '-' || c == '\0');
 }
 
-void	free_argv(char **argv)
+void	free_matrix(char **argv)
 {
 	int	i;
 

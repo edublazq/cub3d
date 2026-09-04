@@ -55,7 +55,7 @@ clean:
 	$(RM) $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 
-fclean: clean
+fclean: clean fclean_mlx
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 

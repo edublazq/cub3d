@@ -53,13 +53,13 @@ int	get_data_for_map(t_map *map, char *file)
 		i++;
 	aux = malloc(sizeof(char *) * (i - 8 + 1));
 	if (!aux || parse_map_content(map, content, aux, i))
-		return (free_argv(content), free(aux), EXIT_FAILURE);
+		return (free_matrix(content), free(aux), EXIT_FAILURE);
 	map->grid = get_map(aux);
 	if (!map->grid)
-		return (free_argv(content), free(aux), EXIT_FAILURE);
+		return (free_matrix(content), free(aux), EXIT_FAILURE);
 	map->height = i - 8;
 	map->width = ft_strlen(map->grid[0]);
-	free_argv(content);
+	free_matrix(content);
 	free(aux);
 	return (EXIT_SUCCESS);
 }

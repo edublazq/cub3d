@@ -32,35 +32,32 @@ static t_colors	get_colors(char *line)
 			colors.three = ft_atoi(numbers[j]);
 		j++;
 	}
-	free_argv(numbers);
+	free_matrix(numbers);
 	return (colors);
 }
 
-static int	parse_texture(char **dst, char *line)
+static int	parse_texture(char *src, mlx_texture_t *dst)
 {
-	char	*tmp;
-
-	tmp = ft_strdup(line);
-	if (!tmp)
+	dst = mlx_load_png(src);
+	if (!dst)
 		return (EXIT_FAILURE);
-	tmp[ft_strlen(tmp) - 1] = '\0';
-	*dst = ft_strdup(ft_strchr(tmp, '.'));
-	free(tmp);
-	return (*dst == NULL);
+	return (EXIT_SUCCESS);
 }
+
+//WORKING IN PROGESS
 
 int	parse_header_line(t_map *map, char **content, int i)
 {
 	char	*tmp;
 
 	if (i == 0)
-		return (parse_texture(&map->textures->no, content[i]));
+		return (parse_texture());
 	if (i == 1)
-		return (parse_texture(&map->textures->so, content[i]));
+		return (parse_texture());
 	if (i == 2)
-		return (parse_texture(&map->textures->we, content[i]));
+		return (parse_texture());
 	if (i == 3)
-		return (parse_texture(&map->textures->ea, content[i]));
+		return (parse_texture());
 	if (i == 5 || i == 6)
 	{
 		tmp = ft_strdup(content[i]);

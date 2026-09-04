@@ -24,22 +24,22 @@ static int check_textures(char *line, int i)
 	if (i == 0)
 	{
 		error1 = ft_strncmp(line, "NO ./", 4);
-		error2 = ft_strncmp(&line[len - 5], ".xpm", 4);
+		error2 = ft_strncmp(&line[len - 5], ".png", 4);
 	}
 	else if (i == 1)
 	{
 		error1 = ft_strncmp(line, "SO ./", 4);
-		error2 = ft_strncmp(&line[len - 5], ".xpm", 4);
+		error2 = ft_strncmp(&line[len - 5], ".png", 4);
 	}
 	else if (i == 2)
 	{
 		error1 = ft_strncmp(line, "WE ./", 4);
-		error2 = ft_strncmp(&line[len - 5], ".xpm", 4);
+		error2 = ft_strncmp(&line[len - 5], ".png", 4);
 	}
 	else if (i == 3)
 	{
 		error1 = ft_strncmp(line, "EA ./", 4);
-		error2 = ft_strncmp(&line[len - 5], ".xpm", 4);
+		error2 = ft_strncmp(&line[len - 5], ".png", 4);
 	}
 	return (error1 + error2);
 }
@@ -91,7 +91,7 @@ static int check_colors(char *line, int i)
 			error = 1;
 		i++;
 	}
-	return (free_argv(numbers), error);
+	return (free_matrix(numbers), error);
 }
 
 
