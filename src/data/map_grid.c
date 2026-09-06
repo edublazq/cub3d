@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static char	*map_rectangulizer(char *line, char *map, int longest)
+static void	map_rectangulizer(char *line, char *map, int longest)
 {
 	int	i;
 
@@ -28,7 +28,6 @@ static char	*map_rectangulizer(char *line, char *map, int longest)
 		i++;
 	}
 	map[i] = '\0';
-	return (map);
 }
 
 static size_t	longest_line(char **aux)
@@ -65,9 +64,9 @@ char	**get_map(char **aux)
 	{
 		map[i] = malloc(sizeof(char) * (longest + 2));
 		if (!map[i])
-			return (free_argv(map), NULL);
+			return (free_matrix(map), NULL);
 		if (ft_strlen(aux[i]) - 2 <= longest)
-			map[i] = map_rectangulizer(aux[i], map[i], longest);
+			map_rectangulizer(aux[i], map[i], longest);
 		i++;
 	}
 	map[i] = NULL;

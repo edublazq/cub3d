@@ -19,12 +19,12 @@ int	is_wall(t_map *map, int x, int y)
 	return (map->grid[y][x] != '0');
 }
 
-double	calc_perp_wall_dist(t_ray *ray, t_player *player)
+double	calc_perp_wall_dist(t_ray ray, t_player *player)
 {
-	if (ray->side == 0)
-		return ((ray->map_x - player->pos.x
-				+ (1 - ray->step_x) / 2.0) / ray->dir.x);
+	if (ray.side == 0)
+		return ((ray.map_x - player->pos.x
+				+ (1 - ray.step_x) / 2.0) / ray.dir.x);
 	else
-		return ((ray->map_y - player->pos.y
-				+ (1 - ray->step_y) / 2.0) / ray->dir.y);
+		return ((ray.map_y - player->pos.y
+				+ (1 - ray.step_y) / 2.0) / ray.dir.y);
 }

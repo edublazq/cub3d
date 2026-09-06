@@ -36,28 +36,45 @@ static t_colors	get_colors(char *line)
 	return (colors);
 }
 
-static int	parse_texture(char *src, mlx_texture_t *dst)
+static int	parse_texture(char *src, mlx_texture_t **dst)
 {
-	dst = mlx_load_png(src);
-	if (!dst)
+	*dst = mlx_load_png(src);
+	if (!*dst)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-//WORKING IN PROGESS
+static char	*extract_texture_path(char *line)
+{
+	return (ft_substr(line, 3, ft_strlen(line) - 4));
+}
+
+static int	parse_texture_line(t_map *map, char *line, int i)
+{
+	char	*path;
+	int		ret;
+
+	path = extract_texture_path(line);
+	if (!path)
+		return (EXIT_FAILURE);
+	if (i == 0)
+		ret = parse_texture(path, &map->textures[NORTH_TEXTURE]);
+	else if (i == 1)
+		ret = parse_texture(path, &map->textures[SOUTH_TEXTURE]);
+	else if (i == 2)
+		ret = parse_texture(path, &map->textures[WEST_TEXTURE]);
+	else
+		ret = parse_texture(path, &map->textures[EAST_TEXTURE]);
+	free(path);
+	return (ret);
+}
 
 int	parse_header_line(t_map *map, char **content, int i)
 {
 	char	*tmp;
 
-	if (i == 0)
-		return (parse_texture());
-	if (i == 1)
-		return (parse_texture());
-	if (i == 2)
-		return (parse_texture());
-	if (i == 3)
-		return (parse_texture());
+	if (i >= 0 && i <= 3)
+		return (parse_texture_line(map, content[i], i));
 	if (i == 5 || i == 6)
 	{
 		tmp = ft_strdup(content[i]);

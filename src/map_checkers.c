@@ -52,7 +52,7 @@ static int count_players(char **content)
 	return (EXIT_SUCCESS);
 }
 
-static char *map_rectangulizer(char *line, char *map, int longest)
+static void	map_rectangulizer(char *line, char *map, int longest)
 {
 	int	i;
 
@@ -69,7 +69,6 @@ static char *map_rectangulizer(char *line, char *map, int longest)
 	}
 	map[i] = '\n';
 	map[i + 1] = '\0';
-	return (map);
 }
 
 static int open_map(char **map, int max)
@@ -122,7 +121,7 @@ int	check_map(char **content)
 	{
 		map[i - 8] = malloc(sizeof(char) * (longest + 3));
 		if (ft_strlen(content[i]) - 2 <= longest)
-			map[i - 8] = map_rectangulizer(content[i], map[i - 8], longest);
+			map_rectangulizer(content[i], map[i - 8], longest);
 		i++;
 	}
 	map[i - 8] = NULL;

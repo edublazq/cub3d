@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	save = read_until_enter(fd, save);
-	if (save == NULL)
+	if (!save)
 		return (NULL);
 	line = make_line_from(save);
 	save = the_rest(save);

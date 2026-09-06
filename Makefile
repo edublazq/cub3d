@@ -26,9 +26,9 @@ SRCS        = src/main.c src/render/mlx_init.c src/render/vec2.c \
 			  src/render/draw_minimap.c src/render/draw_3d.c \
 			  src/render/move.c src/render/rotate.c \
 			  src/check.c src/gnl.c src/file_checkers.c \
-			  src/map_checkers.c src/utils.c src/data.c \
+			  src/map_checkers.c src/utils.c \
 			  src/data/get_data_for_map.c src/data/map_grid.c \
-			  src/data/map_header.c \
+			  src/data/map_header.c src/data/get_data_for_player.c \
 			  src/render/raycasting/aux.c src/render/raycasting/raycast.c \
 
 OBJS        = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)

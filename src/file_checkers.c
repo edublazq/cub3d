@@ -23,22 +23,22 @@ static int check_textures(char *line, int i)
 	len = ft_strlen(line);
 	if (i == 0)
 	{
-		error1 = ft_strncmp(line, "NO ./", 4);
+		error1 = ft_strncmp(line, "NO", 2);
 		error2 = ft_strncmp(&line[len - 5], ".png", 4);
 	}
 	else if (i == 1)
 	{
-		error1 = ft_strncmp(line, "SO ./", 4);
+		error1 = ft_strncmp(line, "SO", 2);
 		error2 = ft_strncmp(&line[len - 5], ".png", 4);
 	}
 	else if (i == 2)
 	{
-		error1 = ft_strncmp(line, "WE ./", 4);
+		error1 = ft_strncmp(line, "WE", 2);
 		error2 = ft_strncmp(&line[len - 5], ".png", 4);
 	}
 	else if (i == 3)
 	{
-		error1 = ft_strncmp(line, "EA ./", 4);
+		error1 = ft_strncmp(line, "EA", 2);
 		error2 = ft_strncmp(&line[len - 5], ".png", 4);
 	}
 	return (error1 + error2);

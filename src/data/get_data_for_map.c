@@ -29,24 +29,14 @@ static int	parse_map_content(t_map *map, char **content, char **aux, int total)
 	return (EXIT_SUCCESS);
 }
 
-static int	init_map_source(t_map *map, char *file, char ***content)
-{
-	map->textures = malloc(sizeof(t_texture));
-	if (!map->textures)
-		return (EXIT_FAILURE);
-	*content = read_file(file);
-	if (!*content)
-		return (free(map->textures), EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
 int	get_data_for_map(t_map *map, char *file)
 {
 	char	**content;
 	char	**aux;
 	int		i;
 
-	if (init_map_source(map, file, &content))
+	content = read_file(file);
+	if (!content)
 		return (EXIT_FAILURE);
 	i = 0;
 	while (content[i])

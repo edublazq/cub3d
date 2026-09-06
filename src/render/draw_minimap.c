@@ -98,8 +98,8 @@ void	draw_player(t_game *game)
 	int	x;
 	int	y;
 
-	x = (int)((game->player.pos).x * TILE_SIZE) - PLAYER_SIZE / 2;
-	y = (int)((game->player.pos).y * TILE_SIZE) - PLAYER_SIZE / 2;
+	x = (int)(game->player.pos.x * TILE_SIZE) - PLAYER_SIZE / 2;
+	y = (int)(game->player.pos.y * TILE_SIZE) - PLAYER_SIZE / 2;
 
 	i = 0;
 	while (i < PLAYER_SIZE)
@@ -121,14 +121,14 @@ void draw_map(t_game *game)
 	int y;
 
 	y = 0;
-	while(game->map.grid[y])
+	while (game->map.grid[y])
 	{
 		x = 0;
-		while((game->map.grid)[y][x])
+		while (game->map.grid[y][x])
 		{
-			if ((game->map.grid)[y][x] == '1')
+			if (game->map.grid[y][x] == '1')
 				draw_square(game, x, y, 0xFFFFFFFF);
-			else if ((game->map.grid)[y][x] == '0')
+			else if (game->map.grid[y][x] == '0')
 				draw_square(game, x, y, 0x000000FF);
 			x++;
 		}
