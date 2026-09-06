@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopelayo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 19:16:51 by jopelayo          #+#    #+#             */
-/*   Updated: 2026/08/26 19:16:53 by jopelayo         ###   ########.fr       */
+/*   Created: 2026/09/02 20:15:00 by edblazqu          #+#    #+#             */
+/*   Updated: 2026/09/02 20:15:01 by edblazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,18 @@ int	can_move(t_game *game, double x, double y)
 	map_y = (int)(y - PLAYER_RADIUS);
 	if (game->map.grid[map_y][map_x] != '0')
 		return (0);
-
 	map_x = (int)(x + PLAYER_RADIUS);
 	map_y = (int)(y - PLAYER_RADIUS);
 	if (game->map.grid[map_y][map_x] != '0')
 		return (0);
-
 	map_x = (int)(x - PLAYER_RADIUS);
 	map_y = (int)(y + PLAYER_RADIUS);
 	if (game->map.grid[map_y][map_x] != '0')
 		return (0);
-
 	map_x = (int)(x + PLAYER_RADIUS);
 	map_y = (int)(y + PLAYER_RADIUS);
 	if (game->map.grid[map_y][map_x] != '0')
 		return (0);
-
 	return (1);
 }
 
@@ -94,16 +90,4 @@ void	move_right(t_game *game)
 		game->player.pos.x = new_x;
 		game->player.pos.y = new_y;
 	}
-}
-
-void	rotate_right(t_game *game)
-{
-	game->player.orientation = vec2_rotate(game->player.orientation, ROT_SPEED);
-	game->player.plane = vec2_rotate(game->player.plane, ROT_SPEED);
-}
-
-void	rotate_left(t_game *game)
-{
-	game->player.orientation = vec2_rotate(game->player.orientation, -ROT_SPEED);
-	game->player.plane = vec2_rotate(game->player.plane, -ROT_SPEED);
 }

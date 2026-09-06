@@ -66,24 +66,24 @@ int	check_arg(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	file_content = read_file(av[1]);
-	if (file_content == NULL)
+	if (!file_content)
 	{
 		printf("%s\n", "File is not readable.");
 		/* printf() de la estructura correcta */
-		return (free_argv(file_content), EXIT_FAILURE);
+		return (free_matrix(file_content), EXIT_FAILURE);
 	}
 	if (check_file(file_content))
 	{
 		printf("%s\n", "File structure is not correct.");
 		/* printf() de la estructura correcta */
-		return (free_argv(file_content), EXIT_FAILURE);
+		return (free_matrix(file_content), EXIT_FAILURE);
 	}
 	if (check_map(file_content))
 	{
 		printf("%s\n", "Map structure is not correct.");
 		/* printf() de la estructura correcta */
-		return (free_argv(file_content), EXIT_FAILURE);
+		return (free_matrix(file_content), EXIT_FAILURE);
 	}
-	return (free_argv(file_content), EXIT_SUCCESS);
+	return (free_matrix(file_content), EXIT_SUCCESS);
 }
 

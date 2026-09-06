@@ -62,7 +62,7 @@ void	draw_square(t_game *game, int x, int y, uint32_t color);
 
 /* RAY */
 int		is_wall(t_map *map, int x, int y);
-double	calc_perp_wall_dist(t_ray *ray, t_player *player);
+double	calc_perp_wall_dist(t_ray ray, t_player *player);
 t_ray	compute_ray(t_player *player, t_map *map, int x, int screen_width);
 void	draw_3d(t_game *game);
 

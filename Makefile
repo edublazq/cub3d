@@ -1,6 +1,6 @@
 NAME        = cub3d
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g3
+CFLAGS      = -Wall -Wextra -Werror -o2
 RM          = rm -rf
 
 SRC_DIR     = src
@@ -23,9 +23,12 @@ LDFLAGS     = -L $(LIBFT_DIR) -lft \
 HEADERS     = include/cub3d.h include/render.h
 
 SRCS        = src/main.c src/render/mlx_init.c src/render/vec2.c \
-			  src/render/drawer.c src/render/movement.c \
+			  src/render/draw_minimap.c src/render/draw_3d.c \
+			  src/render/move.c src/render/rotate.c \
 			  src/check.c src/gnl.c src/file_checkers.c \
-			  src/map_checkers.c src/utils.c src/data.c \
+			  src/map_checkers.c src/utils.c \
+			  src/data/get_data_for_map.c src/data/map_grid.c \
+			  src/data/map_header.c src/data/get_data_for_player.c \
 			  src/render/raycasting/aux.c src/render/raycasting/raycast.c \
 
 OBJS        = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
@@ -52,7 +55,7 @@ clean:
 	$(RM) $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 
-fclean: clean
+fclean: clean fclean_mlx
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 

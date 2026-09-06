@@ -12,26 +12,6 @@
 
 #include "render.h"
 
-// static mlx_image_t	*g_img;
-
-// static void	draw_noise(t_game *game)
-// {
-// 	uint32_t	x;
-// 	uint32_t	y;
-
-// 	x = 0;
-// 	while (x < g_img->width)
-// 	{
-// 		y = 0;
-// 		while (y < g_img->height)
-// 		{
-// 			mlx_put_pixel(g_img, x, y, ((uint32_t)(rand() & 0xFFFFFF) << 8) | 0xFF);
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }
-
 void	resize_hook(int32_t width, int32_t height, void *param)
 {
 	t_game		*game;
@@ -58,7 +38,7 @@ void	resize_hook(int32_t width, int32_t height, void *param)
 	draw_3d(game);
 }
 
-void	 main_hooks(void *param)
+void	main_hooks(void *param)
 {
 	t_game	*game;
 
@@ -80,11 +60,17 @@ void	 main_hooks(void *param)
 	draw_3d(game);
 }
 
+/* void	load_textures(t_game *game)
+{
+	mlx_load_png(game->)
+}
+ */
 void	init_window(t_game *game)
 {
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	game->width = WIDTH;
 	game->height = HEIGHT;
+	// load_textures(game);
 	game->mlx = mlx_init(game->width, game->height, "cub3d", true);
 	if (!game->mlx)
 		return ;

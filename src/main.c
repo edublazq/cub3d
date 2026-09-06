@@ -14,14 +14,17 @@
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
 	t_game game;
 
  	if (check_arg(ac, av))
 		return (EXIT_FAILURE);
-	get_data_for_map(&(game.map), av[1]);
-	get_data_for_player(&(game.player), &(game.map));
+	if (get_data_for_map(&game.map, av[1]))
+	{
+		printf("%s\n", "Error loading map data.");
+		return (EXIT_FAILURE);
+	}
+	get_data_for_player(&game.player, &game.map);
 	init_window(&game);
-	return (free(game.map.textures), free_argv((&(game.map))->grid), 0);
+	free_matrix(game.map.grid);
+	return (EXIT_SUCCESS);
 }

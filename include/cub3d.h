@@ -24,13 +24,10 @@
 # include "gnl.h"
 # include "types.h"
 
-typedef struct s_texture
-{
-	char	*no;
-	char	*ea;
-	char	*so;
-	char	*we;
-}	t_texture;
+# define NORTH_TEXTURE 0
+# define EAST_TEXTURE 1
+# define WEST_TEXTURE 2
+# define SOUTH_TEXTURE 3
 
 typedef struct s_colors
 {
@@ -41,12 +38,12 @@ typedef struct s_colors
 
 typedef struct s_map
 {
-	t_texture	*textures;
-    t_colors	floor_color;
-    t_colors	ceiling_color;
-	char		**grid;
-	int			height;
-	int			width;
+	mlx_texture_t	*textures[4];
+    t_colors		floor_color;
+    t_colors		ceiling_color;
+	char			**grid;
+	int				height;
+	int				width;
 }	t_map;
 
 typedef struct s_player
@@ -90,8 +87,10 @@ char 	**read_file(char *file);
 int		check_arg(int ac, char **av);
 int 	check_file(char **content);
 int 	check_map(char **file_content);
-void	free_argv(char **argv);
-void	get_data_for_map(t_map *map, char *file);
+void	free_matrix(char **argv);
+int		get_data_for_map(t_map *map, char *file);
+char	**get_map(char **aux);
+int		parse_header_line(t_map *map, char **content, int i);
 void	get_data_for_player(t_player *player, t_map *map);
 int		is_void(char c);
 int		is_walkable(char c);

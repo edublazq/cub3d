@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopelayo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/02 06:14:54 by jopelayo          #+#    #+#             */
-/*   Updated: 2026/08/02 06:14:56 by jopelayo         ###   ########.fr       */
+/*   Created: 2026/09/02 20:15:00 by edblazqu          #+#    #+#             */
+/*   Updated: 2026/09/02 20:15:01 by edblazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_walkable(char c)
+void	rotate_right(t_game *game)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	game->player.orientation = vec2_rotate(game->player.orientation, ROT_SPEED);
+	game->player.plane = vec2_rotate(game->player.plane, ROT_SPEED);
 }
 
-int	is_void(char c)
+void	rotate_left(t_game *game)
 {
-	return (c == ' ' || c == '-' || c == '\0');
-}
-
-void	free_matrix(char **argv)
-{
-	int	i;
-
-	i = 0;
-	if (!argv)
-		return ;
-	while (argv[i])
-	{
-		free(argv[i]);
-		i++;
-	}
-	free(argv);
+	game->player.orientation = vec2_rotate(game->player.orientation,
+			-ROT_SPEED);
+	game->player.plane = vec2_rotate(game->player.plane, -ROT_SPEED);
 }

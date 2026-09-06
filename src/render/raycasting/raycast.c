@@ -23,7 +23,7 @@ static void	init_ray_grid(t_ray *ray, t_player *player)
 	if (ray->dir.y == 0)
 		ray->delta_dist.y = 1e30;
 	else
-		ray->delta_dist.y = fabs(1.0 / ray->dir.y);	
+		ray->delta_dist.y = fabs(1.0 / ray->dir.y);
 }
 
 static void	init_ray_steps(t_ray *ray, t_player *player)
@@ -31,12 +31,14 @@ static void	init_ray_steps(t_ray *ray, t_player *player)
 	if (ray->dir.x < 0)
 	{
 		ray->step_x = -1;
-		ray->side_dist.x = (player->pos.x - ray->map_x) * ray->delta_dist.x;
+		ray->side_dist.x = (player->pos.x - ray->map_x)
+			* ray->delta_dist.x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist.x = (ray->map_x + 1.0 - player->pos.x) * ray->delta_dist.x;
+		ray->side_dist.x = (ray->map_x + 1.0 - player->pos.x)
+			* ray->delta_dist.x;
 	}
 	if (ray->dir.y < 0)
 	{
@@ -46,7 +48,8 @@ static void	init_ray_steps(t_ray *ray, t_player *player)
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist.y = (ray->map_y + 1.0 - player->pos.y) * ray->delta_dist.y;
+		ray->side_dist.y = (ray->map_y + 1.0 - player->pos.y)
+			* ray->delta_dist.y;
 	}
 }
 
@@ -55,7 +58,8 @@ t_vec2	get_ray_dir(t_player *player, int x, int screen_width)
 	double	camera_x;
 
 	camera_x = 2.0 * x / (double)screen_width - 1.0;
-	return(vec2_add(player->orientation, vec2_scale(player->plane, camera_x)));
+	return (vec2_add(player->orientation,
+			vec2_scale(player->plane, camera_x)));
 }
 
 static void	perform_dda(t_ray *ray, t_map *map)
@@ -88,6 +92,6 @@ t_ray	compute_ray(t_player *player, t_map *map, int x, int screen_width)
 	init_ray_grid(&ray, player);
 	init_ray_steps(&ray, player);
 	perform_dda(&ray, map);
-	ray.perp_wall_dist = calc_perp_wall_dist(&ray, player);
+	ray.perp_wall_dist = calc_perp_wall_dist(ray, player);
 	return (ray);
 }
