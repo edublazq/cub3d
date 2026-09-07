@@ -26,5 +26,6 @@ int	main(int ac, char **av)
 	get_data_for_player(&game.player, &game.map);
 	init_window(&game);
 	free_matrix(game.map.grid);
+	free_textures(game.map.textures);
 	return (EXIT_SUCCESS);
 }

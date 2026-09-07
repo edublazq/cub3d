@@ -88,6 +88,7 @@ int		check_arg(int ac, char **av);
 int 	check_file(char **content);
 int 	check_map(char **file_content);
 void	free_matrix(char **argv);
+void	free_textures(mlx_texture_t *textures[4]);
 int		get_data_for_map(t_map *map, char *file);
 char	**get_map(char **aux);
 int		parse_header_line(t_map *map, char **content, int i);
