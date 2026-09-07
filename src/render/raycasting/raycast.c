@@ -93,5 +93,6 @@ t_ray	compute_ray(t_player *player, t_map *map, int x, int screen_width)
 	init_ray_steps(&ray, player);
 	perform_dda(&ray, map);
 	ray.perp_wall_dist = calc_perp_wall_dist(ray, player);
+	ray.wall_x = calc_wall_x(player, ray);
 	return (ray);
 }

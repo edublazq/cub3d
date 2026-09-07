@@ -12,6 +12,18 @@
 
 #include "render.h"
 
+double	calc_wall_x(t_player *player, t_ray ray)
+{
+	double	wall_x;
+
+	if (ray.side == 0)
+		wall_x = player->pos.y + ray.perp_wall_dist * ray.dir.y;
+	else
+		wall_x = player->pos.x + ray.perp_wall_dist * ray.dir.x;
+	wall_x -= floor(wall_x);
+	return (wall_x);
+}
+
 int	is_wall(t_map *map, int x, int y)
 {
 	if (y < 0 || y >= map->height || x < 0 || x >= map->width)

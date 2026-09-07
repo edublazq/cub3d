@@ -1,6 +1,6 @@
 NAME        = cub3d
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -o2
+CFLAGS      = -Wall -Wextra -Werror
 RM          = rm -rf
 
 SRC_DIR     = src
@@ -24,6 +24,7 @@ HEADERS     = include/cub3d.h include/render.h
 
 SRCS        = src/main.c src/render/mlx_init.c src/render/vec2.c \
 			  src/render/draw_minimap.c src/render/draw_3d.c \
+			  src/render/draw_3d_textures.c \
 			  src/render/move.c src/render/rotate.c \
 			  src/check.c src/gnl.c src/file_checkers.c \
 			  src/map_checkers.c src/utils.c \

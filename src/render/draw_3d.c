@@ -12,47 +12,27 @@
 
 #include "cub3d.h"
 
-static uint32_t	pick_wall_color(t_ray *ray)
+static void	draw_column(t_game *game, void *img, int x, t_ray *ray)
 {
-	if (ray->side == 1)
-		return (0x888888FF);
-	return (0xCCCCCCFF);
-}
+	t_column		col;
+	mlx_texture_t	*texture;
+	double			step;
+	int				y;
 
-/* static int	pick_wall_texture(t_game *game, t_ray *ray)
-{
-	if (ray->side == 0)
-	{
-		if (ray->step_x > 0)
-			game->
-	}
-} */
-
-void	draw_column(void *img, int x, t_ray *ray, int screen_height)
-{
-	int			line_height;
-	int			draw_start;
-	int			draw_end;
-	uint32_t	color;
-	int			y;
-
-	line_height = (int)(screen_height / ray->perp_wall_dist);
-	draw_start = -line_height / 2 + screen_height / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = line_height / 2 + screen_height / 2;
-	if (draw_end >= screen_height)
-		draw_end = screen_height - 1;
-	color = pick_wall_color(ray);
+	init_column(&col, ray, game->height);
+	col.texture = pick_wall_texture(ray);
+	texture = game->map.textures[col.texture];
+	col.tex_vec.x = calc_tex_x(*ray, texture);
+	step = init_tex_pos(&col, texture, game->height);
 	y = -1;
-	while (++y < screen_height)
+	while (++y < game->height)
 	{
-		if (y < draw_start)
-			mlx_put_pixel(img, x, y, 0x800000FF);
-		else if (y > draw_end)
-			mlx_put_pixel(img, x, y, 0x808000FF);
+		if (y < col.draw_start)
+			mlx_put_pixel(img, x, y, game->map.ceiling_color.rgba);
+		else if (y > col.draw_end)
+			mlx_put_pixel(img, x, y, game->map.floor_color.rgba);
 		else
-			mlx_put_pixel(img, x, y, color);
+			mlx_put_pixel(img, x, y, sample_wall_color(&col, texture, step));
 	}
 }
 
@@ -65,7 +45,7 @@ void	draw_3d(t_game *game)
 	while (x < game->width)
 	{
 		ray = compute_ray(&game->player, &game->map, x, game->width);
-		draw_column(game->img, x, &ray, game->height);
+		draw_column(game, game->img, x, &ray);
 		x++;
 	}
 }

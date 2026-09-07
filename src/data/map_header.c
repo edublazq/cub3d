@@ -25,13 +25,14 @@ static t_colors	get_colors(char *line)
 	while (numbers[j])
 	{
 		if (j == 0)
-			colors.one = ft_atoi(numbers[j]);
+			colors.r = ft_atoi(numbers[j]);
 		else if (j == 1)
-			colors.two = ft_atoi(numbers[j]);
+			colors.g = ft_atoi(numbers[j]);
 		else if (j == 2)
-			colors.three = ft_atoi(numbers[j]);
+			colors.b = ft_atoi(numbers[j]);
 		j++;
 	}
+	colors.a = 0xFF;
 	free_matrix(numbers);
 	return (colors);
 }
