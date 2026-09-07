@@ -47,6 +47,7 @@ void	move_forward(t_game *game)
 	{
 		game->player.pos.x = new_x;
 		game->player.pos.y = new_y;
+		game->moved = 1;
 	}
 }
 
@@ -61,6 +62,7 @@ void	move_backward(t_game *game)
 	{
 		game->player.pos.x = new_x;
 		game->player.pos.y = new_y;
+		game->moved = 1;
 	}
 }
 
@@ -75,6 +77,7 @@ void	move_left(t_game *game)
 	{
 		game->player.pos.x = new_x;
 		game->player.pos.y = new_y;
+		game->moved = 1;
 	}
 }
 
@@ -89,5 +92,6 @@ void	move_right(t_game *game)
 	{
 		game->player.pos.x = new_x;
 		game->player.pos.y = new_y;
+		game->moved = 1;
 	}
 }

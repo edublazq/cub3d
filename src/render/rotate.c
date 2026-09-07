@@ -16,6 +16,7 @@ void	rotate_right(t_game *game)
 {
 	game->player.orientation = vec2_rotate(game->player.orientation, ROT_SPEED);
 	game->player.plane = vec2_rotate(game->player.plane, ROT_SPEED);
+	game->moved = 1;
 }
 
 void	rotate_left(t_game *game)
@@ -23,4 +24,5 @@ void	rotate_left(t_game *game)
 	game->player.orientation = vec2_rotate(game->player.orientation,
 			-ROT_SPEED);
 	game->player.plane = vec2_rotate(game->player.plane, -ROT_SPEED);
+	game->moved = 1;
 }

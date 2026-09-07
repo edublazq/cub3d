@@ -57,7 +57,11 @@ void	main_hooks(void *param)
 		rotate_left(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate_right(game);
-	draw_3d(game);
+	if (game->moved)
+	{
+		draw_3d(game);
+		game->moved = 0;
+	}
 }
 
 /* void	load_textures(t_game *game)
@@ -70,6 +74,7 @@ void	init_window(t_game *game)
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	game->width = WIDTH;
 	game->height = HEIGHT;
+	game->moved = 0;
 	// load_textures(game);
 	game->mlx = mlx_init(game->width, game->height, "cub3d", true);
 	if (!game->mlx)

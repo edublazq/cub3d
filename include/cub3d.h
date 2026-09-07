@@ -24,16 +24,13 @@
 # include "gnl.h"
 # include "types.h"
 
-# define NORTH_TEXTURE 0
-# define EAST_TEXTURE 1
-# define WEST_TEXTURE 2
-# define SOUTH_TEXTURE 3
-
 typedef struct s_colors
 {
-	int		one;
-	int		two;
-	int		three;
+	uint8_t		r;
+	uint8_t		g;
+	uint8_t		b;
+	uint8_t		a;
+	uint32_t	rgba;
 }	t_colors;
 
 typedef struct s_map
@@ -62,12 +59,14 @@ typedef struct s_ray
 	int		map_y;
 	int		step_x;
 	int		step_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	double	wall_x;
 	t_vec2	dir;
 	t_vec2	delta_dist;
 	t_vec2	side_dist;
-	int		side;
-	int		hit;
-	double	perp_wall_dist;
+	t_vec2	tex;
 }	t_ray;
 
 typedef struct s_game
@@ -79,6 +78,7 @@ typedef struct s_game
 	mlx_t			*mlx;
 	int				fd;
 	void			*img;
+	int				moved;
 }	t_game;
 
 /* Validación y parseo */
