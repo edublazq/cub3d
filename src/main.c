@@ -6,7 +6,7 @@
 /*   By: edblazqu <edblazqu@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/30 15:33:44 by edblazqu          #+#    #+#             */
-/*   Updated: 2026/05/30 15:33:45 by edblazqu         ###   ########.fr       */
+/*   Updated: 2026/09/07 23:59:46 by jopelayo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 int	main(int ac, char **av)
 {
-	t_game game;
+	t_game	game;
 
- 	if (check_arg(ac, av))
+	(void)ac;
+	(void)av;
+	if (check_arg(ac, av))
 		return (EXIT_FAILURE);
-	if (get_data_for_map(&game.map, av[1]))
-	{
-		printf("%s\n", "Error loading map data.");
-		return (EXIT_FAILURE);
-	}
-	get_data_for_player(&game.player, &game.map);
+	get_data_for_map(&(game.map), av[1], 0, 0);
+	get_data_for_player(&(game.player), &(game.map));
 	init_window(&game);
-	free_matrix(game.map.grid);
+	free(game.map.textures);
+	free_argv((&(game.map))->grid);
 	return (EXIT_SUCCESS);
 }
