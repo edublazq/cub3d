@@ -12,17 +12,29 @@
 
 #include "cub3d.h"
 
-char **read_file(char *file)
+static void	print_error(void)
 {
-	int i;
-	int fd;
-	char *line;
-	char **content;
+	printf("\033[1;91mInput is invalid.\n");
+	printf("File has to be a '.cub' and readable.\n");
+	printf("It has to follow the exact next structure:\n\033[0;39m");
+	printf("-------------------------------------\n");
+	printf("NO ./path_to_the_north_texture.xpm\n");
+	printf("SO ./path_to_the_south_texture.xpm\n");
+	printf("WE ./path_to_the_west_texture.xpm\n");
+	printf("EA ./path_to_the_east_texture.xpm\n");
+	printf("\n");
+	printf("F nmb,nmb,nmb\nC nmb,nmb,nmb\n");
+	printf("\n");
+	printf("Map structure will follow.\n");
+	printf("-------------------------------------\n");
+	printf("\033[1;91m'.xpm' files have to be readable ");
+	printf("and numbers have to go from 0 to 255.\n");
+	printf("Maps only contain '0', '1' and one player marked as E/W/S/N.\n");
+	printf("Open maps will not be tolerated.\n\033[0;39m");
+}
 
-	i = 0;
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
+static int	count_lines(char *line, int fd, int i)
+{
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -31,19 +43,28 @@ char **read_file(char *file)
 		i++;
 		free(line);
 	}
+	return (i);
+}
+
+char	**read_file(char *file, char *line, int fd, int i)
+{
+	char	**content;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	i = count_lines(NULL, fd, i);
 	content = malloc(sizeof(char *) * (i + 1));
 	if (!content)
 		return (NULL);
 	close(fd);
 	fd = open(file, O_RDONLY);
 	i = 0;
-	line = NULL;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		content[i] = NULL;
 		content[i] = line;
 		i++;
 	}
@@ -54,8 +75,8 @@ char **read_file(char *file)
 
 int	check_arg(int ac, char **av)
 {
-	int	len;
-	char **file_content;
+	int		len;
+	char	**file_content;
 
 	if (ac != 2)
 		return (EXIT_FAILURE);
@@ -65,25 +86,12 @@ int	check_arg(int ac, char **av)
 		printf("%s\n", "File's name is not correct.");
 		return (EXIT_FAILURE);
 	}
-	file_content = read_file(av[1]);
-	if (!file_content)
+	file_content = read_file(av[1], NULL, 0, 0);
+	if (file_content == NULL || check_file(file_content, 0, 0)
+		|| check_map(file_content, 0, 8))
 	{
-		printf("%s\n", "File is not readable.");
-		/* printf() de la estructura correcta */
-		return (free_matrix(file_content), EXIT_FAILURE);
+		print_error();
+		return (free_argv(file_content), EXIT_FAILURE);
 	}
-	if (check_file(file_content))
-	{
-		printf("%s\n", "File structure is not correct.");
-		/* printf() de la estructura correcta */
-		return (free_matrix(file_content), EXIT_FAILURE);
-	}
-	if (check_map(file_content))
-	{
-		printf("%s\n", "Map structure is not correct.");
-		/* printf() de la estructura correcta */
-		return (free_matrix(file_content), EXIT_FAILURE);
-	}
-	return (free_matrix(file_content), EXIT_SUCCESS);
+	return (free_argv(file_content), EXIT_SUCCESS);
 }
-
