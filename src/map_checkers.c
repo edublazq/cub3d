@@ -101,7 +101,7 @@ static int	open_map(char **map)
 	return (EXIT_SUCCESS);
 }
 
-int	check_map(char **content, size_t longest, int i)
+int	check_map(char **content, size_t longest, int i, int j)
 {
 	char	**map;
 
@@ -115,17 +115,17 @@ int	check_map(char **content, size_t longest, int i)
 	}
 	if (count_players(content) || open_map(content))
 		return (EXIT_FAILURE);
-	map = malloc(sizeof(char *) * (i - 8 + 1));
+	map = malloc(sizeof(char *) * (i - j + 1));
 	if (!map)
 		return (EXIT_FAILURE);
-	i = 8;
+	i = j;
 	while (content[i])
 	{
-		map[i - 8] = malloc(sizeof(char) * (longest + 3));
+		map[i - j] = malloc(sizeof(char) * (longest + 3));
 		if (ft_strlen(content[i]) - 2 <= longest)
-			map[i - 8] = map_rectangulizer(content[i], map[i - 8], longest);
+			map[i - j] = map_rectangulizer(content[i], map[i - j], longest);
 		i++;
 	}
-	map[i - 8] = NULL;
-	return (free_argv(map), EXIT_SUCCESS);
+	map[i - j] = NULL;
+	return (free_matrix(map), EXIT_SUCCESS);
 }

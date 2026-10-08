@@ -19,7 +19,7 @@ int	is_walkable(char c)
 
 int	is_void(char c)
 {
-	return (c == ' ' || c == '-' || c == '\0');
+	return (c == ' ' || c == '-' || c == '\n' || c == '\0');
 }
 
 void	free_matrix(char **argv)

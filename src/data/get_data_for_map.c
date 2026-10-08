@@ -12,20 +12,26 @@
 
 #include "cub3d.h"
 
-static int	parse_map_content(t_map *map, char **content, char **aux, int total)
+static int	parse_map_content(t_map *map, char **content, char **aux, int j)
 {
 	int	i;
+	int	k;
 
 	i = 0;
-	while (i < total)
+	k = 0;
+	while (i < j)
 	{
-		if (parse_header_line(map, content, i))
+		if (parse_header_line(map, content[i]))
 			return (EXIT_FAILURE);
-		if (i > 7)
-			aux[i - 8] = content[i];
 		i++;
 	}
-	aux[i - 8] = NULL;
+	while (content[j])
+	{
+		aux[k] = content[j];
+		k++;
+		j++;
+	}
+	aux[k] = NULL;
 	return (EXIT_SUCCESS);
 }
 
@@ -34,22 +40,27 @@ int	get_data_for_map(t_map *map, char *file)
 	char	**content;
 	char	**aux;
 	int		i;
+	int		j;
 
-	content = read_file(file);
+	j = 0;
+	content = read_file(file, NULL, 0, 0);
+
 	if (!content)
 		return (EXIT_FAILURE);
 	i = 0;
 	while (content[i])
 		i++;
-	if (i < 8)
+	while (content[j][0] != '1')
+		j++;
+	if (i < j)
 		return (free_matrix(content), EXIT_FAILURE);
-	aux = malloc(sizeof(char *) * (i - 8 + 1));
-	if (!aux || parse_map_content(map, content, aux, i))
+	aux = malloc(sizeof(char *) * (i - j + 1));
+	if (!aux || parse_map_content(map, content, aux, j))
 		return (free_matrix(content), free(aux), EXIT_FAILURE);
 	map->grid = get_map(aux);
 	if (!map->grid)
 		return (free_matrix(content), free(aux), EXIT_FAILURE);
-	map->height = i - 8;
+	map->height = i - j;
 	map->width = ft_strlen(map->grid[0]);
 	free_matrix(content);
 	free(aux);
