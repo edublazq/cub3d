@@ -14,12 +14,27 @@
 
 static t_colors	get_colors(char *line)
 {
+	int			len;
+	int			new_len;
 	int			j;
 	char		*tmp;
+	char		*new_line;
 	char		**numbers;
 	t_colors	colors;
 
-	tmp = line + 2;
+	len = 0;
+	new_len = 0;
+	while (line[len])
+	{
+		if (line[len] == ' ')
+			len++;
+		len++;
+		new_len++;
+	}
+	new_line = malloc(sizeof(char) * len);
+	new_line = ft_strdup(line_with_no_spaces(line, new_line));
+	numbers = ft_split(new_line, ',');
+	tmp = new_line + 2;
 	numbers = ft_split(tmp, ',');
 	j = 0;
 	while (numbers[j])
@@ -50,7 +65,7 @@ static char	*extract_texture_path(char *line)
 	return (ft_substr(line, 3, ft_strlen(line) - 4));
 }
 
-static int	parse_texture_line(t_map *map, char *line, int i)
+static int	parse_texture_line(t_map *map, char *line, int texture_index)
 {
 	char	*path;
 	int		ret;
@@ -58,35 +73,28 @@ static int	parse_texture_line(t_map *map, char *line, int i)
 	path = extract_texture_path(line);
 	if (!path)
 		return (EXIT_FAILURE);
-	if (i == 0)
-		ret = parse_texture(path, &map->textures[NORTH_TEXTURE]);
-	else if (i == 1)
-		ret = parse_texture(path, &map->textures[SOUTH_TEXTURE]);
-	else if (i == 2)
-		ret = parse_texture(path, &map->textures[WEST_TEXTURE]);
-	else
-		ret = parse_texture(path, &map->textures[EAST_TEXTURE]);
+	ret = parse_texture(path, &map->textures[texture_index]);
 	free(path);
 	return (ret);
 }
 
-int	parse_header_line(t_map *map, char **content, int i)
+int	parse_header_line(t_map *map, char *line)
 {
-	char	*tmp;
-
-	if (i >= 0 && i <= 3)
-		return (parse_texture_line(map, content[i], i));
-	if (i == 5 || i == 6)
-	{
-		tmp = ft_strdup(content[i]);
-		if (!tmp)
-			return (EXIT_FAILURE);
-		tmp[ft_strlen(tmp) - 1] = '\0';
-		if (i == 5)
-			map->floor_color = get_colors(tmp);
-		else
-			map->ceiling_color = get_colors(tmp);
-		free(tmp);
-	}
+	if (line[0] == '\n' || line[0] == '\0')
+		return (EXIT_SUCCESS);
+	if (!ft_strncmp(line, "NO ", 3))
+		return (parse_texture_line(map, line, NORTH_TEXTURE));
+	if (!ft_strncmp(line, "SO ", 3))
+		return (parse_texture_line(map, line, SOUTH_TEXTURE));
+	if (!ft_strncmp(line, "WE ", 3))
+		return (parse_texture_line(map, line, WEST_TEXTURE));
+	if (!ft_strncmp(line, "EA ", 3))
+		return (parse_texture_line(map, line, EAST_TEXTURE));
+	if (line[0] == 'F' && line[1] == ' ')
+		map->floor_color = get_colors(line + 2);
+	else if (line[0] == 'C' && line[1] == ' ')
+		map->ceiling_color = get_colors(line + 2);
+	else
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

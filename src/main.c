@@ -20,10 +20,10 @@ int	main(int ac, char **av)
 	(void)av;
 	if (check_arg(ac, av))
 		return (EXIT_FAILURE);
-	get_data_for_map(&(game.map), av[1], 0, 0);
+	get_data_for_map(&(game.map), av[1]);
 	get_data_for_player(&(game.player), &(game.map));
 	init_window(&game);
-	free(game.map.textures);
-	free_argv((&(game.map))->grid);
+	// free(game.map.textures);
+	free_matrix((&(game.map))->grid);
 	return (EXIT_SUCCESS);
 }
