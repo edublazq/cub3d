@@ -36,8 +36,8 @@ typedef struct s_colors
 typedef struct s_map
 {
 	mlx_texture_t	*textures[4];
-    t_colors		floor_color;
-    t_colors		ceiling_color;
+	t_colors		floor_color;
+	t_colors		ceiling_color;
 	char			**grid;
 	int				height;
 	int				width;
@@ -47,9 +47,7 @@ typedef struct s_player
 {
 	t_vec2	pos;
 	t_vec2	orientation;
-	double	movement_speed;
 	t_vec2	plane;
-	double	rotate_speed;
 	int		fov;
 }	t_player;
 
@@ -66,7 +64,6 @@ typedef struct s_ray
 	t_vec2	dir;
 	t_vec2	delta_dist;
 	t_vec2	side_dist;
-	t_vec2	tex;
 }	t_ray;
 
 typedef struct s_game
@@ -76,7 +73,6 @@ typedef struct s_game
 	int				width;
 	int				height;
 	mlx_t			*mlx;
-	int				fd;
 	void			*img;
 	int				moved;
 }	t_game;
@@ -95,9 +91,5 @@ int		parse_header_line(t_map *map, char **content, int i);
 void	get_data_for_player(t_player *player, t_map *map);
 int		is_void(char c);
 int		is_walkable(char c);
-
-/* Configuracion */
-
-void	config_player(t_player *player);
 
 #endif
