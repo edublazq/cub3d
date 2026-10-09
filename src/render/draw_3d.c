@@ -19,7 +19,7 @@ static void	draw_column(t_game *game, void *img, int x, t_ray *ray)
 	double			step;
 	int				y;
 
-	init_column(&col, ray, game->height);
+	init_column(&col, ray, game);
 	col.texture = pick_wall_texture(ray);
 	texture = game->map.textures[col.texture];
 	col.tex_vec.x = calc_tex_x(*ray, texture);

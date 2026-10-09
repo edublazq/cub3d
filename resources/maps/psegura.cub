@@ -1,10 +1,10 @@
 F 100,100,50
 C 150,190,180
 
-SO ./PNG/wall_alga_S.png
-WE ./PNG/wall_alga_W.png
-EA ./PNG/wall_alga_E.png
-NO ./PNG/wall_alga_N.png
+SO ./resources/textures/wall_S.png
+WE ./resources/textures/wall_W.png
+EA ./resources/textures/wall_E.png
+NO ./resources/textures/wall_N.png
 
 
       

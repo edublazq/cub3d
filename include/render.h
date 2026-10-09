@@ -93,7 +93,7 @@ void	draw_3d(t_game *game);
 
 t_tex_side	pick_wall_texture(t_ray *ray);
 double		calc_tex_x(t_ray ray, mlx_texture_t *texture);
-void		init_column(t_column *col, t_ray *ray, int screen_h);
+void		init_column(t_column *col, t_ray *ray, t_game *game);
 double		init_tex_pos(t_column *col, mlx_texture_t *tex, int screen_h);
 uint32_t	sample_wall_color(t_column *col, mlx_texture_t *tex, double step);
 

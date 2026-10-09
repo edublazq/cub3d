@@ -30,22 +30,26 @@ double	calc_tex_x(t_ray ray, mlx_texture_t *texture)
 	double	tex_x;
 
 	tex_x = (int)(ray.wall_x * texture->width);
-	if (ray.side == 0 && ray.dir.x > 0)
+	if (ray.side == 0 && ray.dir.x < 0)
 		tex_x = texture->width - tex_x - 1;
-	if (ray.side == 1 && ray.dir.y < 0)
+	if (ray.side == 1 && ray.dir.y > 0)
 		tex_x = texture->width - tex_x - 1;
 	return (tex_x);
 }
 
-void	init_column(t_column *col, t_ray *ray, int screen_h)
+void	init_column(t_column *col, t_ray *ray, t_game *game)
 {
-	col->line_height = (int)(screen_h / ray->perp_wall_dist);
-	col->draw_start = -col->line_height / 2 + screen_h / 2;
+	double	scale;
+
+	scale = game->width / (2.0 * hypot(game->player.plane.x,
+				game->player.plane.y));
+	col->line_height = (int)(scale / ray->perp_wall_dist);
+	col->draw_start = -col->line_height / 2 + game->height / 2;
 	if (col->draw_start < 0)
 		col->draw_start = 0;
-	col->draw_end = col->line_height / 2 + screen_h / 2;
-	if (col->draw_end >= screen_h)
-		col->draw_end = screen_h - 1;
+	col->draw_end = col->line_height / 2 + game->height / 2;
+	if (col->draw_end >= game->height)
+		col->draw_end = game->height - 1;
 }
 
 double	init_tex_pos(t_column *col, mlx_texture_t *tex, int screen_h)

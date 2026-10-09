@@ -29,12 +29,12 @@ static void	set_orientation(t_player *player, char c)
 		player->orientation.x = 0;
 		player->orientation.y = 1;
 	}
-	else if (c == 'E')
+	else if (c == 'W')
 	{
 		player->orientation.x = -1;
 		player->orientation.y = 0;
 	}
-	else if (c == 'W')
+	else if (c == 'E')
 	{
 		player->orientation.x = 1;
 		player->orientation.y = 0;

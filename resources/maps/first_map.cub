@@ -1,7 +1,7 @@
-NO /home/bamberger12/42/github/cub3d/resources/images.png
-SO /home/bamberger12/42/github/cub3d/resources/images.png
-WE /home/bamberger12/42/github/cub3d/resources/images.png
-EA /home/bamberger12/42/github/cub3d/resources/images.png
+NO ./resources/textures/wall_N.png
+SO ./resources/textures/wall_S.png
+WE ./resources/textures/wall_W.png
+EA ./resources/textures/wall_E.png
 
 F 0,100,230
 C 225,30,0

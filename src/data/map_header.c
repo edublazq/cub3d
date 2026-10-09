@@ -17,7 +17,7 @@ static t_colors	get_colors(char *line)
 	int			j;
 	char		*tmp;
 	char		**numbers;
-	t_colors	colors;
+	t_colors	c;
 
 	tmp = line + 2;
 	numbers = ft_split(tmp, ',');
@@ -25,16 +25,17 @@ static t_colors	get_colors(char *line)
 	while (numbers[j])
 	{
 		if (j == 0)
-			colors.r = ft_atoi(numbers[j]);
+			c.r = ft_atoi(numbers[j]);
 		else if (j == 1)
-			colors.g = ft_atoi(numbers[j]);
+			c.g = ft_atoi(numbers[j]);
 		else if (j == 2)
-			colors.b = ft_atoi(numbers[j]);
+			c.b = ft_atoi(numbers[j]);
 		j++;
 	}
-	colors.a = 0xFF;
+	c.a = 0xFF;
+	c.rgba = (c.r << 24) | (c.g << 16) | (c.b << 8) | (c.a); 
 	free_matrix(numbers);
-	return (colors);
+	return (c);
 }
 
 static int	parse_texture(char *src, mlx_texture_t **dst)
