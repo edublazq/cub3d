@@ -33,7 +33,7 @@ static t_colors	get_colors(char *line)
 		j++;
 	}
 	c.a = 0xFF;
-	c.rgba = (c.r << 24) | (c.g << 16) | (c.b << 8) | (c.a); 
+	c.rgba = ((uint32_t)c.r << 24) | (c.g << 16) | (c.b << 8) | c.a;
 	free_matrix(numbers);
 	return (c);
 }

@@ -14,9 +14,9 @@
 
 int	main(int ac, char **av)
 {
-	t_game game;
+	t_game	game;
 
- 	if (check_arg(ac, av))
+	if (check_arg(ac, av))
 		return (EXIT_FAILURE);
 	if (get_data_for_map(&game.map, av[1]))
 	{

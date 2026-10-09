@@ -73,5 +73,5 @@ uint32_t	sample_wall_color(t_column *col, mlx_texture_t *tex, double step)
 		* tex->bytes_per_pixel;
 	p = &tex->pixels[idx];
 	col->tex_vec.y += step;
-	return ((p[0] << 24) | (p[1] << 16) | (p[2] << 8) | p[3]);
+	return (((uint32_t)p[0] << 24) | (p[1] << 16) | (p[2] << 8) | p[3]);
 }

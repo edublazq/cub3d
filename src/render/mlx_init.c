@@ -64,18 +64,12 @@ void	main_hooks(void *param)
 	}
 }
 
-/* void	load_textures(t_game *game)
-{
-	mlx_load_png(game->)
-}
- */
 void	init_window(t_game *game)
 {
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	game->width = WIDTH;
 	game->height = HEIGHT;
 	game->moved = 0;
-	// load_textures(game);
 	game->mlx = mlx_init(game->width, game->height, "cub3d", true);
 	if (!game->mlx)
 		return ;
