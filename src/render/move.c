@@ -40,9 +40,11 @@ void	move_forward(t_game *game)
 {
 	double	new_x;
 	double	new_y;
+	double	speed;
 
-	new_x = game->player.pos.x + game->player.orientation.x * MOVE_SPEED;
-	new_y = game->player.pos.y + game->player.orientation.y * MOVE_SPEED;
+	speed = get_speed(game);
+	new_x = game->player.pos.x + game->player.orientation.x * speed;
+	new_y = game->player.pos.y + game->player.orientation.y * speed;
 	if (can_move(game, new_x, new_y))
 	{
 		game->player.pos.x = new_x;
@@ -55,9 +57,11 @@ void	move_backward(t_game *game)
 {
 	double	new_x;
 	double	new_y;
+	double	speed;
 
-	new_x = game->player.pos.x - game->player.orientation.x * MOVE_SPEED;
-	new_y = game->player.pos.y - game->player.orientation.y * MOVE_SPEED;
+	speed = get_speed(game);
+	new_x = game->player.pos.x - game->player.orientation.x * speed;
+	new_y = game->player.pos.y - game->player.orientation.y * speed;
 	if (can_move(game, new_x, new_y))
 	{
 		game->player.pos.x = new_x;
@@ -70,9 +74,11 @@ void	move_left(t_game *game)
 {
 	double	new_x;
 	double	new_y;
+	double	speed;
 
-	new_x = game->player.pos.x + game->player.orientation.y * MOVE_SPEED;
-	new_y = game->player.pos.y - game->player.orientation.x * MOVE_SPEED;
+	speed = get_speed(game);
+	new_x = game->player.pos.x + game->player.orientation.y * speed;
+	new_y = game->player.pos.y - game->player.orientation.x * speed;
 	if (can_move(game, new_x, new_y))
 	{
 		game->player.pos.x = new_x;
@@ -85,9 +91,11 @@ void	move_right(t_game *game)
 {
 	double	new_x;
 	double	new_y;
+	double	speed;
 
-	new_x = game->player.pos.x - game->player.orientation.y * MOVE_SPEED;
-	new_y = game->player.pos.y + game->player.orientation.x * MOVE_SPEED;
+	speed = get_speed(game);
+	new_x = game->player.pos.x - game->player.orientation.y * speed;
+	new_y = game->player.pos.y + game->player.orientation.x * speed;
 	if (can_move(game, new_x, new_y))
 	{
 		game->player.pos.x = new_x;

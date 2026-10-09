@@ -19,7 +19,8 @@
 # define PI 3.141592f
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MOVE_SPEED 0.09
+# define WALK_SPEED 0.09
+# define DASH_SPEED 0.13
 # define ROT_SPEED 0.05
 # define PLAYER_RADIUS 0.15
 

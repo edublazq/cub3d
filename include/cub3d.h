@@ -87,6 +87,7 @@ void	free_matrix(char **argv);
 void	free_textures(mlx_texture_t *textures[4]);
 int		get_data_for_map(t_map *map, char *file);
 char	**get_map(char **aux);
+double	get_speed(t_game *game);
 int		parse_header_line(t_map *map, char **content, int i);
 void	get_data_for_player(t_player *player, t_map *map);
 int		is_void(char c);

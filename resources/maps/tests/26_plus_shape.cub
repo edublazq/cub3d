@@ -1,0 +1,23 @@
+NO ./resources/textures/wall_N.png
+SO ./resources/textures/wall_S.png
+WE ./resources/textures/wall_W.png
+EA ./resources/textures/wall_E.png
+
+F 0,100,230
+C 225,30,0
+
+    1111111
+    1000001
+    1000001
+    1000001
+111110000011111
+100000000000001
+100000000000001
+1000000N0000001
+100000000000001
+100000000000001
+111110000011111
+    1000001
+    1000001
+    1000001
+    1111111
