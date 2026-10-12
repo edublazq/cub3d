@@ -17,7 +17,6 @@ static t_colors	get_colors(char *line)
 	int			len;
 	int			new_len;
 	int			j;
-	char		*tmp;
 	char		*new_line;
 	char		**numbers;
 	t_colors	colors;
@@ -31,11 +30,9 @@ static t_colors	get_colors(char *line)
 		len++;
 		new_len++;
 	}
-	new_line = malloc(sizeof(char) * len);
-	new_line = ft_strdup(line_with_no_spaces(line, new_line));
+	new_line = malloc(sizeof(char) * (new_len));
+	new_line = line_with_only_numbers(line, new_line);
 	numbers = ft_split(new_line, ',');
-	tmp = new_line + 2;
-	numbers = ft_split(tmp, ',');
 	j = 0;
 	while (numbers[j])
 	{

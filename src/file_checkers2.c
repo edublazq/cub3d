@@ -14,7 +14,7 @@
 
 static int	check_color_line(char *line, int i)
 {
-	if (ft_strncmp(line, "F ", 2 && ft_strncmp(line, "C ", 2)))
+	if (ft_strncmp(line, "F ", 2) && ft_strncmp(line, "C ", 2))
 		return (1);
 	i = 2;
 	while (line[i] != '\n')
@@ -26,7 +26,7 @@ static int	check_color_line(char *line, int i)
 	return (0);
 }
 
-char	*line_with_no_spaces(char *line, char *new_line)
+char	*line_with_only_numbers(char *line, char *new_line)
 {
 	int		i;
 	int		j;
@@ -35,16 +35,16 @@ char	*line_with_no_spaces(char *line, char *new_line)
 	j = 0;
 	while (line[i])
 	{
-		if (line[i] == ' ')
+		if (line[i] == ' ' || line[i] == '\n'
+			|| line[i] == 'F' || line[i] == 'C')
 		{
 			i++;
 			continue;
 		}
-		line[i] = new_line[j];
+		new_line[j] = line[i];
 		i++;
 		j++;
 	}
-	new_line[j] = '\0';
 	return (new_line);
 }
 
@@ -68,8 +68,8 @@ static int	check_numbers(char *line)
 		len++;
 		new_len++;
 	}
-	new_line = malloc(sizeof(char) * len);
-	new_line = ft_strdup(line_with_no_spaces(line, new_line));
+	new_line = malloc(sizeof(char) * (new_len));
+	new_line = line_with_only_numbers(line, new_line);
 	numbers = ft_split(new_line, ',');
 	i = 0;
 	while (numbers[i])
@@ -79,6 +79,7 @@ static int	check_numbers(char *line)
 			error = 1;
 		i++;
 	}
+	i = 0;
 	free(new_line);
 	free_matrix(numbers);
 	return (error);

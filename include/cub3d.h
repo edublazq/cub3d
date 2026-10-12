@@ -91,7 +91,7 @@ int		check_arg(int ac, char **av);
 int 	check_file(char **content, int error, int i);
 int 	check_map(char **content, size_t longest, int i, int j);
 int		check_colors(char *line, int i);
-char	*line_with_no_spaces(char *line, char *new_line);
+char	*line_with_only_numbers(char *line, char *new_line);
 void	free_matrix(char **argv);
 int		get_data_for_map(t_map *map, char *file);
 char	**get_map(char **aux);

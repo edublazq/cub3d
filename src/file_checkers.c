@@ -34,9 +34,13 @@ static int	check_textures(char *line)
 int	check_file(char **content, int error, int i)
 {
 	int	max;
+	int final_sum;
 
 	max = 0;
-	while (content[i][0] != '1' && max < 5)
+	final_sum = 0;
+	if (!content)
+		return (EXIT_FAILURE);
+	while (content[i][0] != '1')
 	{
 		if (content[i][0] == '\n')
 		{
@@ -46,8 +50,11 @@ int	check_file(char **content, int error, int i)
 		if (check_textures(content[i]) && check_colors(content[i], 0))
 			error++;
 		max++;
+		final_sum = final_sum + (int)content[i][0];
 		i++;
 	}
+	if (max > 6 || final_sum != ('N' + 'S' + 'E' + 'W' + 'F' + 'C'))
+		error++;
 	if (error != 0)
 			return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

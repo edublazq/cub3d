@@ -14,27 +14,27 @@
 
 static void	print_error(int error)
 {
-	printf("\033[1;91mInput is invalid.\n");
-	printf("File has to be a '.cub' and readable.\n");
+	perror("\033[1;91mInput is invalid.\n");
+	perror("File has to be a '.cub' and readable.\n");
 	if (error == 1)
 	{
-		printf("It has to follow the exact next structure:\n\033[0;39m");
-		printf("-------------------------------------\n");
-		printf("NO /path_to_the_north_texture.xpm\n");
-		printf("SO /path_to_the_south_texture.xpm\n");
-		printf("WE /path_to_the_west_texture.xpm\n");
-		printf("EA /path_to_the_east_texture.xpm\n");
-		printf("\n");
-		printf("F nmb,nmb,nmb\nC nmb,nmb,nmb\n");
-		printf("\n");
-		printf("Map will follow.\n");
-		printf("\033[1;91m'.png' files have to be readable ");
-		printf("and numbers have to go from 0 to 255.\n");
+		perror("It has to follow the exact next structure:\n\033[0;39m");
+		perror("-------------------------------------\n");
+		perror("NO /path_to_the_north_texture.xpm\n");
+		perror("SO /path_to_the_south_texture.xpm\n");
+		perror("WE /path_to_the_west_texture.xpm\n");
+		perror("EA /path_to_the_east_texture.xpm\n");
+		perror("\n");
+		perror("F nmb,nmb,nmb\nC nmb,nmb,nmb\n");
+		perror("\n");
+		perror("Map will follow.\n");
+		perror("\033[1;91m'.png' files have to be readable ");
+		perror("and numbers have to go from 0 to 255.\n");
 	}
 	if (error == 2)
 	{
-		printf("Maps only contain '0', '1' and one player marked as E/W/S/N.\n");
-		printf("Open maps will not be tolerated.\n");
+		perror("Maps only contain '0', '1' and one player marked as E/W/S/N.\n");
+		perror("Open maps will not be tolerated.\n");
 	}
 }
 
@@ -94,6 +94,8 @@ int	check_arg(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	file_content = read_file(av[1], NULL, 0, 0);
+	if (!file_content)
+		return (free_matrix(file_content), EXIT_FAILURE);
 	while (file_content[j][0] != '1')
 		j++;
 	if (file_content == NULL || check_file(file_content, 0, 0)

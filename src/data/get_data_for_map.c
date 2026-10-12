@@ -52,8 +52,6 @@ int	get_data_for_map(t_map *map, char *file)
 		i++;
 	while (content[j][0] != '1')
 		j++;
-	if (i < j)
-		return (free_matrix(content), EXIT_FAILURE);
 	aux = malloc(sizeof(char *) * (i - j + 1));
 	if (!aux || parse_map_content(map, content, aux, j))
 		return (free_matrix(content), free(aux), EXIT_FAILURE);
