@@ -24,6 +24,9 @@
 # include "gnl.h"
 # include "types.h"
 
+# define TEXTURES_AND_COLORS 1
+# define MAP				 2
+
 typedef struct s_colors
 {
 	uint8_t		r;
@@ -79,10 +82,12 @@ typedef struct s_game
 
 /* Validación y parseo */
 
-char 	**read_file(char *file);
+char 	**read_file(char *file, char *line, int fd, int i);
 int		check_arg(int ac, char **av);
-int 	check_file(char **content);
-int 	check_map(char **file_content);
+int 	check_file(char **content, int error, int i);
+int 	check_map(char **content, size_t longest, int i, int j);
+int		check_colors(char *line, int i);
+char	*line_with_only_numbers(char *line, char *new_line);
 void	free_matrix(char **argv);
 void	free_textures(mlx_texture_t *textures[4]);
 int		get_data_for_map(t_map *map, char *file);
