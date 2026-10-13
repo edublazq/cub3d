@@ -36,3 +36,11 @@ void	free_matrix(char **argv)
 	}
 	free(argv);
 }
+
+void	free_textures(mlx_texture_t *textures[4])
+{
+	mlx_delete_texture(textures[0]);
+	mlx_delete_texture(textures[1]);
+	mlx_delete_texture(textures[2]);
+	mlx_delete_texture(textures[3]);
+}

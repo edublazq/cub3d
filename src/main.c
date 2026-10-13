@@ -16,14 +16,13 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 
-	(void)ac;
-	(void)av;
 	if (check_arg(ac, av))
 		return (EXIT_FAILURE);
 	if (get_data_for_map(&(game.map), av[1]))
 		return (EXIT_FAILURE);
 	get_data_for_player(&(game.player), &(game.map));
 	init_window(&game);
-	free_matrix((&(game.map))->grid);
+	free_matrix(game.map.grid);
+	free_textures(game.map.textures);
 	return (EXIT_SUCCESS);
 }

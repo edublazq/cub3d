@@ -12,6 +12,13 @@
 
 #include "render.h"
 
+double	get_speed(t_game *game)
+{
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT_SHIFT))
+		return (DASH_SPEED);
+	return (WALK_SPEED);
+}
+
 void	resize_hook(int32_t width, int32_t height, void *param)
 {
 	t_game		*game;
@@ -64,18 +71,12 @@ void	main_hooks(void *param)
 	}
 }
 
-/* void	load_textures(t_game *game)
-{
-	mlx_load_png(game->)
-}
- */
 void	init_window(t_game *game)
 {
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	game->width = WIDTH;
 	game->height = HEIGHT;
 	game->moved = 0;
-	// load_textures(game);
 	game->mlx = mlx_init(game->width, game->height, "cub3d", true);
 	if (!game->mlx)
 		return ;
