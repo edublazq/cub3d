@@ -96,8 +96,7 @@ int	check_arg(int ac, char **av)
 	file_content = read_file(av[1], NULL, 0, 0);
 	if (!file_content)
 		return (free_matrix(file_content), EXIT_FAILURE);
-	while (file_content[j][0] != '1')
-		j++;
+	j = get_map_start(file_content);
 	if (file_content == NULL || check_file(file_content, 0, 0)
 		|| check_map(file_content, 0, j, j))
 	{
