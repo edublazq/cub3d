@@ -12,10 +12,10 @@
 
 #include "cub3d.h"
 
-static int	check_textures(char *line)
+int	check_textures(char *line)
 {
 	int	len;
-	int error;
+	int	error;
 
 	error = 0;
 	len = ft_strlen(line);
@@ -24,7 +24,7 @@ static int	check_textures(char *line)
 	{
 		error++;
 	}
-	if (ft_strncmp(&line[len - 5], ".png", 4))
+	if (len < 5 || ft_strncmp(&line[len - 5], ".png", 4))
 	{
 		error++;
 	}
@@ -55,31 +55,13 @@ int	get_map_start(char **content)
 
 int	check_file(char **content, int error, int i)
 {
-	int	max;
-	int	final_sum;
 	int	header_end;
 
-	max = 0;
-	final_sum = 0;
 	if (!content)
 		return (EXIT_FAILURE);
 	header_end = get_map_start(content);
-	while (i < header_end)
-	{
-		if (content[i][0] == '\n')
-		{
-			i++;
-			continue;
-		}
-		if (check_textures(content[i]) && check_colors(content[i], 0))
-			error++;
-		max++;
-		final_sum = final_sum + (int)content[i][0];
-		i++;
-	}
-	if (max > 6 || final_sum != ('N' + 'S' + 'E' + 'W' + 'F' + 'C'))
-		error++;
+	error = error + tally_headers(content, header_end, i);
 	if (error != 0)
-			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
