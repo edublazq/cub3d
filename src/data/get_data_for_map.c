@@ -42,16 +42,13 @@ int	get_data_for_map(t_map *map, char *file)
 	int		i;
 	int		j;
 
-	j = 0;
 	content = read_file(file, NULL, 0, 0);
-
 	if (!content)
 		return (EXIT_FAILURE);
 	i = 0;
 	while (content[i])
 		i++;
-	while (content[j][0] != '1')
-		j++;
+	j = get_map_start(content);
 	aux = malloc(sizeof(char *) * (i - j + 1));
 	if (!aux || parse_map_content(map, content, aux, j))
 		return (free_matrix(content), free(aux), EXIT_FAILURE);

@@ -12,44 +12,6 @@
 
 #include "cub3d.h"
 
-static t_colors	get_colors(char *line)
-{
-	int			len;
-	int			new_len;
-	int			j;
-	char		*new_line;
-	char		**numbers;
-	t_colors	c;
-
-	len = 0;
-	new_len = 0;
-	while (line[len])
-	{
-		if (line[len] == ' ')
-			len++;
-		len++;
-		new_len++;
-	}
-	new_line = malloc(sizeof(char) * (new_len));
-	new_line = line_with_only_numbers(line, new_line);
-	numbers = ft_split(new_line, ',');
-	j = 0;
-	while (numbers[j])
-	{
-		if (j == 0)
-			c.r = ft_atoi(numbers[j]);
-		else if (j == 1)
-			c.g = ft_atoi(numbers[j]);
-		else if (j == 2)
-			c.b = ft_atoi(numbers[j]);
-		j++;
-	}
-	c.a = 0xFF;
-	c.rgba = ((uint32_t)c.r << 24) | (c.g << 16) | (c.b << 8) | c.a;
-	free_matrix(numbers);
-	return (c);
-}
-
 static int	parse_texture(char *src, mlx_texture_t **dst)
 {
 	*dst = mlx_load_png(src);
@@ -60,7 +22,12 @@ static int	parse_texture(char *src, mlx_texture_t **dst)
 
 static char	*extract_texture_path(char *line)
 {
-	return (ft_substr(line, 3, ft_strlen(line) - 4));
+	int	len;
+
+	len = ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+		len--;
+	return (ft_substr(line, 3, len - 3));
 }
 
 static int	parse_texture_line(t_map *map, char *line, int texture_index)
@@ -89,9 +56,9 @@ int	parse_header_line(t_map *map, char *line)
 	if (!ft_strncmp(line, "EA ", 3))
 		return (parse_texture_line(map, line, EAST_TEXTURE));
 	if (line[0] == 'F' && line[1] == ' ')
-		map->floor_color = get_colors(line + 2);
+		get_colors(line + 2, &map->floor_color);
 	else if (line[0] == 'C' && line[1] == ' ')
-		map->ceiling_color = get_colors(line + 2);
+		get_colors(line + 2, &map->ceiling_color);
 	else
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

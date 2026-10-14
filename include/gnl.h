@@ -1,5 +1,17 @@
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gnl.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: edblazqu <edblazqu@student.42madrid.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/13 15:57:35 by edblazqu          #+#    #+#             */
+/*   Updated: 2026/10/13 15:57:40 by edblazqu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef GNL_H
+# define GNL_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -17,4 +29,5 @@ unsigned long int	ft_strlen(const char *s);
 char				*ft_strjoin(char *s1, char *s2);
 char				*ft_strchr(const char *save, int character);
 void				*ft_calloc(unsigned long int size, unsigned long int c);
+
 #endif

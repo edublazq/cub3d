@@ -82,18 +82,24 @@ typedef struct s_game
 
 /* Validación y parseo */
 
-char 	**read_file(char *file, char *line, int fd, int i);
+char	**read_file(char *file, char *line, int fd, int i);
 int		check_arg(int ac, char **av);
-int 	check_file(char **content, int error, int i);
-int 	check_map(char **content, size_t longest, int i, int j);
+int		check_file(char **content, int error, int i);
+int		check_map(char **content, size_t longest, int i, int j);
 int		check_colors(char *line, int i);
+int		check_textures(char *line);
 char	*line_with_only_numbers(char *line, char *new_line);
+int		get_map_start(char **content);
+int		tally_headers(char **content, int header_end, int start);
+int		build_and_validate_map(char **content, int end, int j,
+			size_t longest);
 void	free_matrix(char **argv);
 void	free_textures(mlx_texture_t *textures[4]);
 int		get_data_for_map(t_map *map, char *file);
 char	**get_map(char **aux);
 double	get_speed(t_game *game);
-int		parse_header_line(t_map *map, char **content, int i);
+int		parse_header_line(t_map *map, char *line);
+void	get_colors(char *line, t_colors *out);
 void	get_data_for_player(t_player *player, t_map *map);
 int		is_void(char c);
 int		is_walkable(char c);
